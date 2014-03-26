@@ -34,6 +34,11 @@ ModelImporter:
     4300004: leg3
     4300006: leg2
     4300008: leg1
+    6400000: leg1
+    6400002: leg2
+    6400004: leg3
+    6400006: leg4
+    6400008: tableTop
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -56,7 +61,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: .00999999978
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
