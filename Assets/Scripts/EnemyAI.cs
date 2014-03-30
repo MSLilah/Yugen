@@ -15,7 +15,7 @@ public class EnemyAI : MonoBehaviour {
 	private float chaseTimer;                               // A timer for the chaseWaitTime.
 	private float patrolTimer;                              // A timer for the patrolWaitTime.
 	private int wayPointIndex;                              // A counter for the way point array.
-	
+	private Vector3 startingPosition;
 	
 	void Awake ()
 	{
@@ -23,6 +23,7 @@ public class EnemyAI : MonoBehaviour {
 		enemySight = GetComponent<EnemySight>();
 		nav = GetComponent<NavMeshAgent>();
 		player = GameObject.FindGameObjectWithTag("Player").transform;
+		startingPosition = transform.position;
 	}
 	
 	
@@ -68,6 +69,7 @@ public class EnemyAI : MonoBehaviour {
 				// ... reset last global sighting, the last personal sighting and the timer.
 				enemySight.personalLastSighting = new Vector3(1000f, 1000f, 1000f);
 				chaseTimer = 0f;
+				nav.destination = startingPosition;
 			}
 		}
 		else
@@ -78,6 +80,6 @@ public class EnemyAI : MonoBehaviour {
 	
 	void Patrolling ()
 	{
-		nav.Stop();
+		//TODO: Add some code here to make the enemy patrol
 	}
 }
