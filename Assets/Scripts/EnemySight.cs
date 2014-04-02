@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemySight : MonoBehaviour 
 {
-	public float fieldOfViewAngle = 110f;
+	public float fieldOfViewAngle = 180f;
 	public bool playerInSight;
 	public Vector3 personalLastSighting;
 

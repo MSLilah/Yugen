@@ -50,7 +50,7 @@ public class EnemyAI : MonoBehaviour {
 		Vector3 sightingDeltaPos = enemySight.personalLastSighting - transform.position;
 		
 		// If the the last personal sighting of the player is not close...
-		if(sightingDeltaPos.sqrMagnitude > 4f)
+		//if(sightingDeltaPos.sqrMagnitude > 4f)
 			// ... set the destination for the NavMeshAgent to the last personal sighting of the player.
 			nav.destination = enemySight.personalLastSighting;
 		
@@ -80,6 +80,7 @@ public class EnemyAI : MonoBehaviour {
 	
 	void Patrolling ()
 	{
+		nav.Stop ();
 		//TODO: Add some code here to make the enemy patrol
 	}
 }
