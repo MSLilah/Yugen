@@ -66,59 +66,59 @@ public class ItemMenu : MonoBehaviour {
 		if (menuOpen) 
 		{
 						// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-						if (GUI.Button (new Rect (10, 10, 120, 50), "Back to Game")) {
+						if (GUI.Button (new Rect (10, 40, 120, 50), "Back to Game")) {
 								//Application.LoadLevel("moveChanges");
 						}
 
 						// Make the second button.
-						if (GUI.Button (new Rect (10, 70, 120, 50), "Clues")) {
+						if (GUI.Button (new Rect (10, 100, 120, 50), "Clues")) {
 								//Application.LoadLevel("ControlInfo");
 						}
 
-						if (GUI.Button (new Rect (10, 130, 120, 50), "Collectibles")) {
+						if (GUI.Button (new Rect (10, 160, 120, 50), "Collectibles")) {
 								//Application.LoadLevel("GameCredits");
 						}
 		
-						if (GUI.Button (new Rect (10, 190, 120, 50), "Quit Game")) {
+						if (GUI.Button (new Rect (10, 220, 120, 50), "Quit Game")) {
 								Application.Quit();
 						}
 
 			if(letterFound == true)
 			{
-				if(GUI.Button(new Rect(150, 10, 120, 100), letterTexture))
+				if(GUI.Button(new Rect(150, 40, 120, 100), letterTexture))
 				{
 					changedSelectedItem(LETTERS, letterInfo);
 				}
 			}
 			else
 			{
-				GUI.Button(new Rect(150, 10, 120, 100), "Empty");
+				GUI.Button(new Rect(150, 40, 120, 100), "Empty");
 			}
 
 			if(axeFound)
 			{
-				if(GUI.Button(new Rect(280, 10, 120, 100), axeTexture))
+				if(GUI.Button(new Rect(280, 40, 120, 100), axeTexture))
 				{
 					changedSelectedItem(AXE, axeInfo);
 				}
 			}
 			else
 			{
-				GUI.Button(new Rect(280, 10, 120, 100), "Empty");
+				GUI.Button(new Rect(280, 40, 120, 100), "Empty");
 			}
 
 			if(sealFound || combined1)
 			{
 				if(combined1 == false)
 				{
-					if(GUI.Button(new Rect(410, 10, 120, 100), sealTexture))
+					if(GUI.Button(new Rect(410, 40, 120, 100), sealTexture))
 					{
 						changedSelectedItem(SEAL, sealInfo);
 					}
 				}
 				else
 				{
-					if(GUI.Button(new Rect(410, 10, 120, 100), combinedTexture))
+					if(GUI.Button(new Rect(410, 40, 120, 100), combinedTexture))
 					{
 						changedSelectedItem(TEMP, combinedMessage);
 					}
@@ -126,26 +126,26 @@ public class ItemMenu : MonoBehaviour {
 			}
 			else
 			{
-				GUI.Button(new Rect(410, 10, 120, 100), "Empty");
+				GUI.Button(new Rect(410, 40, 120, 100), "Empty");
 			}
 
 			if(parchmentFound || combined1)
 			{
 				if(combined1 == false)
 				{
-					if(GUI.Button(new Rect(540, 10, 120, 100), parchmentTexture))
+					if(GUI.Button(new Rect(540, 40, 120, 100), parchmentTexture))
 					{
 						changedSelectedItem(PAPER, parchmentInfo);
 					}
 				}
 				else
 				{
-					GUI.Button(new Rect(540, 10, 120, 100), "Item Used");
+					GUI.Button(new Rect(540, 40, 120, 100), "Item Used");
 				}
 			}
 			else
 			{
-				GUI.Button(new Rect(540, 10, 120, 100), "Empty");
+				GUI.Button(new Rect(540, 40, 120, 100), "Empty");
 			}
 
 			if(itemSelectedOne != null)
