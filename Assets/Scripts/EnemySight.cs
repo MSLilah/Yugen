@@ -40,8 +40,9 @@ public class EnemySight : MonoBehaviour
 				RaycastHit hit;
 				
 				// ... and if a raycast towards the player hits something...
-				if(Physics.Raycast(transform.position /*+ transform.up*/, direction.normalized, out hit, col.radius))
+				if(Physics.Raycast(transform.position/* + transform.up*/, direction.normalized, out hit, col.radius))
 				{
+					Debug.Log(hit.collider.gameObject.name);
 					// ... and if the raycast hits the player...
 					if(hit.collider.gameObject.tag == "Player")
 					{
