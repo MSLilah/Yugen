@@ -19,7 +19,7 @@ public class PlayerSight : MonoBehaviour {
 		// If the player has entered the trigger sphere...
 		if(other.gameObject.tag == "Enemy")
 		{
-			Debug.Log("Enemy close");
+			//Debug.Log("Enemy close");
 			// By default the enemy is not in sight.
 			enemyInSight = false;
 			
