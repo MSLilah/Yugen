@@ -3,9 +3,9 @@ using System.Collections;
 
 public class SanityBarController : MonoBehaviour {
 	
-	private int maxSanity = 100;
-	private int currSanity = 100;
-	private int sanityBarLength;
+	private float maxSanity = 100f;
+	public float currSanity = 100f;
+	private float sanityBarLength;
 	private GUIStyle style;
 	private Texture2D texture;
 	
