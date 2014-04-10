@@ -7,11 +7,13 @@ public class PlayerSight : MonoBehaviour {
 	public SanityBarController sbc;
 	
 	private SphereCollider col;
+	private FadeController fc;
 	
 	void Start() 
 	{
 		col = GetComponent<SphereCollider> ();
 		sbc = GameObject.FindGameObjectWithTag("GameController").GetComponent<SanityBarController> ();
+		fc = GameObject.FindGameObjectWithTag ("Fader").GetComponent<FadeController> ();
 	}
 	
 	void OnTriggerStay (Collider other)
@@ -49,6 +51,10 @@ public class PlayerSight : MonoBehaviour {
 	void Update() {
 		if (enemyInSight) {
 			sbc.currSanity -= 0.1f;
+			if (sbc.currSanity < 0) {
+				sbc.currSanity = 0;
+				fc.gameOver = true;
+			}
 		}
 	}
 	
