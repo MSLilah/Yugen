@@ -17,6 +17,7 @@ public class FadeController : MonoBehaviour {
 	void Update () {
 		if (gameOver) {
 			EndScene();
+			GameObject.FindGameObjectWithTag ("Player").GetComponent<StaminaBarController>().gameOver = true;
 		}
 	}
 
