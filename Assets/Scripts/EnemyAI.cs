@@ -80,6 +80,8 @@ public class EnemyAI : MonoBehaviour {
 	
 	void Patrolling ()
 	{
+		nav.Stop ();
+		return;
 		// Set an appropriate speed for the NavMeshAgent.
 		nav.speed = patrolSpeed;
 		
