@@ -190,6 +190,43 @@ ModelImporter:
     4300068: Sphere
     4300070: Cube
     4300072: BezierCurve_003
+    6400000: BezierCurve
+    6400002: BezierCurve_000
+    6400004: BezierCurve_001
+    6400006: BezierCurve_002
+    6400008: BezierCurve_003
+    6400010: BezierCurve_004
+    6400012: BezierCurve_005
+    6400014: BezierCurve_006
+    6400016: BezierCurve_007
+    6400018: BezierCurve_008
+    6400020: BezierCurve_009
+    6400022: BezierCurve_010
+    6400024: BezierCurve_011
+    6400026: BezierCurve_012
+    6400028: BezierCurve_013
+    6400030: BezierCurve_014
+    6400032: BezierCurve_015
+    6400034: BezierCurve_016
+    6400036: BezierCurve_017
+    6400038: BezierCurve_018
+    6400040: BezierCurve_019
+    6400042: Circle
+    6400044: Circle_001
+    6400046: Circle_002
+    6400048: Circle_003
+    6400050: Circle_004
+    6400052: Circle_005
+    6400054: Circle_006
+    6400056: Circle_007
+    6400058: Cube
+    6400060: Cube_001
+    6400062: Cube_002
+    6400064: Cylinder
+    6400066: Cylinder_001
+    6400068: Cylinder_002
+    6400070: Plane_001
+    6400072: Sphere
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -212,7 +249,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: .00999999978
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
