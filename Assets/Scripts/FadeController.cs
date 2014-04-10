@@ -6,17 +6,20 @@ public class FadeController : MonoBehaviour {
 	public float fadeSpeed = 1.0f;
 	public bool gameOver = false;
 	private DeathController dc;
-	
+	private StaminaBarController sbc;
+
 	void Awake () {
 		guiTexture.pixelInset = new Rect(-1f, -1f, Screen.width, Screen.height);
 		guiTexture.enabled = false;
 		guiTexture.color = Color.clear;
 		dc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<DeathController> ();
+		sbc = GameObject.FindGameObjectWithTag ("Player").GetComponent<StaminaBarController>();
 	}
 
 	void Update () {
 		if (gameOver) {
 			EndScene();
+			sbc.gameOver = true;
 		}
 	}
 
