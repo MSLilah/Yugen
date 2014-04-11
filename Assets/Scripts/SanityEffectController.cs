@@ -8,6 +8,7 @@ public class SanityEffectController : MonoBehaviour {
 
 	private bool writingDisplay = false;
 	private bool changeToWriting = true;
+	private bool falseEnemySpawned = false;
 
 	private GUIStyle style;
 	private Texture2D texture;
@@ -25,18 +26,26 @@ public class SanityEffectController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		sbc.currSanity -= 0.1f;
 		if (sbc.currSanity < 50f) {
+			byte gb = (byte)(101 - (2 * (50 - sbc.currSanity)));
+			insaneLight = new Color32(193, gb, gb, 255);
 			light.color = insaneLight;
 		}
 		else if (light.color != Color.white) {
 			light.color = Color.white;
 		}
-		if (sbc.currSanity < 25f && !writingDisplay) {
+		if (sbc.currSanity < 35f && !writingDisplay) {
 			WritingOnTheWall(writing);
 			writingDisplay = true;
 		}
-		else if (sbc.currSanity > 25f && writingDisplay) {
+		else if (sbc.currSanity > 35f && writingDisplay) {
 			WritingOnTheWall(normalWall);
+		}
+
+		if (sbc.currSanity < 20f && !falseEnemySpawned) {
+			SpawnFalseEnemy();
+			falseEnemySpawned = false;
 		}
 	}
 
@@ -45,5 +54,9 @@ public class SanityEffectController : MonoBehaviour {
 		for (int i = 0; i < walls.Length; i++) {
 			walls[i].renderer.material = m;
 		}
+	}
+
+	void SpawnFalseEnemy() {
+
 	}
 }
