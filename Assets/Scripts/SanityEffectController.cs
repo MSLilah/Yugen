@@ -15,6 +15,10 @@ public class SanityEffectController : MonoBehaviour {
 
 	public Material writing;
 	public Material normalWall;
+
+	public GameObject falseEnemy;
+
+	private Transform player;
 	// Use this for initialization
 	void Start () {
 		sbc = GetComponent<SanityBarController>();
@@ -22,11 +26,11 @@ public class SanityEffectController : MonoBehaviour {
 		insaneLight = new Color32 (193, 101, 101, 255);
 		style = new GUIStyle();
 		texture = new Texture2D(128, 128);
+		player = GameObject.FindGameObjectWithTag ("Player").transform;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		sbc.currSanity -= 0.1f;
 		if (sbc.currSanity < 50f) {
 			byte gb = (byte)(101 - (2 * (50 - sbc.currSanity)));
 			insaneLight = new Color32(193, gb, gb, 255);
@@ -45,7 +49,6 @@ public class SanityEffectController : MonoBehaviour {
 
 		if (sbc.currSanity < 20f && !falseEnemySpawned) {
 			SpawnFalseEnemy();
-			falseEnemySpawned = false;
 		}
 	}
 
@@ -57,6 +60,13 @@ public class SanityEffectController : MonoBehaviour {
 	}
 
 	void SpawnFalseEnemy() {
-
+		int random = Random.Range (0, 100);
+		if (random < 20) {
+			RaycastHit hit;
+			if (!Physics.Raycast (player.position, player.forward.normalized, out hit, 5)) {
+				Instantiate (falseEnemy, player.position + 5 * (player.forward.normalized), player.rotation);
+				falseEnemySpawned = true;
+			}
+		}
 	}
 }
