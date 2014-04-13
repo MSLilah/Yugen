@@ -2,7 +2,30 @@ fileFormatVersion: 2
 guid: 20351ead554af994586e8680a9b72c73
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sbc: {instanceID: 0}
+  - bloodNote: {fileID: 2800000, guid: 1400a2da356dd2243855ddfd9bc1fe53, type: 3}
+  - policeNote: {fileID: 2800000, guid: 4b4773d9c8a5d4a46babb4d028b76e13, type: 3}
+  - villageEmpty: {fileID: 2800000, guid: 049a2b5e6edc9b94587b14db506cdb5a, type: 3}
+  - knifeBlood: {fileID: 2800000, guid: abc1ab03ada8aac4c99e8ca5c6d8e0b6, type: 3}
+  - priestRobes: {fileID: 2800000, guid: b655e492df93cae42b4eea1c89391586, type: 3}
+  - photographPriest: {fileID: 2800000, guid: a0311d2ff6e683545a599aebb860346e, type: 3}
+  - knifeIsPriest: {fileID: 2800000, guid: 539e05443c60162498fb4feb455f6d71, type: 3}
+  - journalDarkness: {fileID: 2800000, guid: 39780d6850b521b48ad80b80157f3459, type: 3}
+  - journalPeople: {fileID: 2800000, guid: 7d494dbdc9eb43842822b6cf139065e5, type: 3}
+  - journalFinalPiece: {fileID: 2800000, guid: 77edd31a716813344b3faa0fa7b0b7dd, type: 3}
+  - letter: {fileID: 2800000, guid: 483c97ac70e71eb478302b9a81ef1136, type: 3}
+  - letterWords: {fileID: 2800000, guid: eae0bf438ced05940bd5bb42caa3fa1d, type: 3}
+  - villageDisappeared: {fileID: 2800000, guid: 223ab970a7e1f5842a1ab8f842a626d9,
+      type: 3}
+  - murderedVillagers: {fileID: 2800000, guid: 50f96525b668a9f4db8bf993de27766f, type: 3}
+  - priestIsMurderer: {fileID: 2800000, guid: 3f5dc1415f7b3c94081f4a38c888ba81, type: 3}
+  - priestIsShady: {fileID: 2800000, guid: e3182c3e43af0a249b3aa0d534a1292e, type: 3}
+  - townSacrific: {fileID: 2800000, guid: 7fe70d988e372ba44a09bc86c968ee3b, type: 3}
+  - oneMoreRequired: {fileID: 2800000, guid: 577d48b0a94417f4da5b3e23840f17a4, type: 3}
+  - priestTrappingPerson: {fileID: 2800000, guid: 3c5c35e56f2578a4185a4e1bf3c7f5b8,
+      type: 3}
+  - FinalSacrific: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

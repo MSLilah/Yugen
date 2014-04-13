@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour {
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
 		if(GUI.Button(new Rect(100,540,120,50), "Start New Game")) {
 			newGameSetUP();
-			Application.LoadLevel("villageScene");
+			Application.LoadLevel("OpeningScene");
 		}
 
 		// Make the second button.

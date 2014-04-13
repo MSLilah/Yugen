@@ -7,6 +7,8 @@ public class ItemMenu : MonoBehaviour {
 
 	public bool menuOpen = false;
 	public bool canNotSeeClues = false;
+	public bool newClueFound = false;
+	public int pickedUpClue = 3;
 	private bool attempt = false;
 	public string currentLevel;
 	public SanityBarController sbc;
@@ -51,6 +53,7 @@ public class ItemMenu : MonoBehaviour {
 	public Texture journalPeople;
 	public Texture journalFinalPiece;
 	public Texture letter;
+	public Texture letterWords;
 	public Texture villageDisappeared;
 	public Texture murderedVillagers;
 	public Texture priestIsMurderer;
@@ -61,16 +64,26 @@ public class ItemMenu : MonoBehaviour {
 	public Texture FinalSacrific;
 
 	//These are constants that will help know what is items are selected
+	//Letter to the MadMan
 	public const int LETTER = 0;
+	//A note Written in Blood
 	public const int BLOOD = 1;
+	//Police memo
 	public const int POLICE = 2;
+	//The village is empty
 	public const int EMPTY = 3;
+	//bloody robes
 	public const int ROBES = 4;
+	//bloody knife
 	public const int BKNIFE = 5;
+	//Photography of priest at the altar
 	public const int PHOTO = 6;
 	public const int PKNIFE = 7;
+	//Journal Entry #1
 	public const int DARK = 8;
+	//Journal Entry #2
 	public const int PEOPLE = 9;
+	//Journal Entry #3
 	public const int FPIECE = 10;
 	public const int DISAPPEARED = 12;
 	public const int MURDEREDV = 13;
@@ -81,9 +94,10 @@ public class ItemMenu : MonoBehaviour {
 	public const int TRAP = 18;
 	public const int FINAL = 19;
 
-	int selectOne = -1;
-	int selectTwo = -1;
-	int combineID = -1;
+	private int selectOne = -1;
+	private int selectTwo = -1;
+	private int combineID = -1;
+
 
 	//This is the information that will be displayed for the clues
 	//##TODO## For some clues it might look better to display images instead of text
@@ -109,11 +123,12 @@ public class ItemMenu : MonoBehaviour {
 
 
 	//These strings are used to display the messages in the menu
-	string itemSelectedOne = null;
-	string itemSelectedTwo = null;
-	string combinedMessage = null;
-	string attemptMessage = null;
-
+	private string itemSelectedOne = null;
+	private string itemSelectedTwo = null;
+	private string combinedMessage = null;
+	private string attemptMessage = null;
+	private int DisplayWidth = (Screen.width - 150) / 2;
+	private int DisplayHeight = Screen.height - 300;
 
 
 	// Use this for initialization
@@ -148,15 +163,24 @@ public class ItemMenu : MonoBehaviour {
 
 		if(Input.GetKeyDown("q"))
 		{
+			newClueFound = false;
 			menuOpen = !menuOpen;
 			clearSelectedItems();
 		}
-	
+		if(Input.GetKeyDown ("z")) 
+		{
+			newClueFound = false;
+		}
+
 	}
 	
 
 	void OnGUI()
 	{
+		if (pickedUpClue != -1) 
+		{
+			clueAchieved(pickedUpClue);
+		}
 		if (menuOpen) 
 		{
 			// Make the second button.
@@ -441,44 +465,41 @@ public class ItemMenu : MonoBehaviour {
 					GUI.Button(new Rect(670, 180, 120, 100), "Empty");
 				}
 
-
-
-
-
-
-
-
+				//Display the Selected Clues
 
 				if(itemSelectedOne != null)
 				{
-					GUI.Label(new Rect(20, Screen.height/2 - 10, 200, 200),itemSelectedOne);
+					diplayClue(selectOne,1);
 				}
+
 				if(itemSelectedTwo != null)
 				{
-					GUI.Label(new Rect((Screen.width/2)-10, Screen.height/2 - 10, 200, 200),itemSelectedTwo);
+					diplayClue(selectTwo,2);
 				}
 
 				if(twoItemsSelected)
 				{
-					if(GUI.Button(new Rect((Screen.width/2)-210, Screen.height/2 - 10, 120, 100), "Combine Items?"))
+					if(GUI.Button(new Rect(10+DisplayWidth+10,300,120,100),"Combine Items?"))
 					{
 						attempt = true;
 						if(canItemsCombine())
 						{
 							clearSelectedItems();
 							attemptMessage = "These things make more sense together!";
+							newClueFound = true;
+							menuOpen = false;
 						}
 						else
 						{
 							attemptMessage = "These items mean nothing together!";
 						}
 					}
-
+					
 				}
 
 				if(attempt)
 				{
-					GUI.Label(new Rect((Screen.width/2), Screen.height/2 + 100, 200, 200),attemptMessage);
+					GUI.Label(new Rect(10+DisplayWidth+10,430,120,100),attemptMessage);
 				}
 			}
 		}
@@ -492,81 +513,63 @@ public class ItemMenu : MonoBehaviour {
 		if ((selectOne == POLICE || selectTwo == POLICE) && (selectOne == EMPTY || selectTwo == EMPTY)) 
 		{
 			clearSelectedItems();
-			itemSelectedOne = villageDisappearedInfo;
-			selectOne = DISAPPEARED;
-			villageDisappearedKnown = true;
+			clueAchieved(DISAPPEARED);
 			return true;
 		}
 		//DISAPPEAR + BLOOD = MURDEREDV
 		else if((selectOne == BLOOD || selectTwo == BLOOD) && (selectOne == DISAPPEARED || selectTwo == DISAPPEARED))
 		{
 			clearSelectedItems();
-			itemSelectedOne = murderedVillagersInfo;
-			selectOne = MURDEREDV;
-			murderedVillagersKnown = true;
+			clueAchieved(MURDEREDV);
 			return true;
 		}
 		//MURDEREDV + SHADY = PMURDERER
 		else if((selectOne == MURDEREDV || selectTwo == MURDEREDV) && (selectOne == SHADY || selectTwo == SHADY))
 		{
 			clearSelectedItems();
-			itemSelectedOne = priestIsMurdererInfo;
-			selectOne = PMURDERER;
-			priestIsMurdererKnown = true;
+			clueAchieved(PMURDERER);
 			return true;
 		}
 		//BKNIFE + PHOTO = PKNIFE
 		else if((selectOne == BKNIFE || selectTwo == BKNIFE) && (selectOne == PHOTO || selectTwo == PHOTO))
 		{
 			clearSelectedItems();
-			itemSelectedOne = knifeIsPriestInfo;
-			selectOne = PKNIFE;
-			knifeIsPriestKnown = true;
+			clueAchieved(PKNIFE);
 			return true;
 		}
 		//PKNIFE + ROBES = SHADY
 		else if((selectOne == ROBES || selectTwo == ROBES) && (selectOne == PKNIFE || selectTwo == PKNIFE))
 		{
 			clearSelectedItems();
-			itemSelectedOne = priestIsShadyInfo;
-			selectOne = SHADY;
-			priestIsShadyKnown = true;
+			clueAchieved(SHADY);
 			return true;
 		}
 		//PMURDERER + DARK = SACRIFIC
 		else if((selectOne == PMURDERER || selectTwo == PMURDERER) && (selectOne == DARK || selectTwo == DARK))
 		{
 			clearSelectedItems();
-			itemSelectedOne = townSacrificInfo;
-			selectOne = SACRIFIC;
-			townSacrificKnown = true;
+			clueAchieved(SACRIFIC);
 			return true;
 		}
 		//SACRIFIC + PEOPLE = MORE
 		else if((selectOne == PEOPLE || selectTwo == PEOPLE) && (selectOne == SACRIFIC || selectTwo == SACRIFIC))
 		{
 			clearSelectedItems();
-			itemSelectedOne = oneMoreRequiredInfo;
-			selectOne = MORE;
-			oneMoreRequiredKnown = true;
+			clueAchieved(MORE);
 			return true;
 		}
 		//MORE + FPIECE = TRAP
 		else if((selectOne == FPIECE || selectTwo == FPIECE) && (selectOne == MORE || selectTwo == MORE))
 		{
 			clearSelectedItems();
-			itemSelectedOne = priestTrappingPersonInfo;
-			selectOne = TRAP;
-			priestTrappingPersonKnown = true;
+			clueAchieved(TRAP);
 			return true;
 		}
 		//TRAP + LETTER = FINAL
 		else if((selectOne == TRAP || selectTwo == TRAP) && (selectOne == LETTER || selectTwo == LETTER))
 		{
 			clearSelectedItems();
-			itemSelectedOne = FinalSacrificInfo;
-			selectOne = FINAL;
-			FinalSacrificKnown = true;
+			clueAchieved(FINAL);
 			return true;
 		}
 		return false;
@@ -576,6 +579,9 @@ public class ItemMenu : MonoBehaviour {
 	{
 		itemSelectedOne = null;
 		itemSelectedTwo = null;
+		twoItemsSelected = false;
+		attempt = false;
+		attemptMessage = null;
 		combinedMessage = null;
 		selectOne = -1;
 		selectTwo = -1;
@@ -659,6 +665,220 @@ public class ItemMenu : MonoBehaviour {
 			return;
 		}
 		PlayerPrefs.SetInt(name, 0);
+	}
+
+	private void diplayClue(int select, int num)
+	{
+		int xStart = 0;
+		int yStart = 0;
+		if (num == 1) 
+		{
+			xStart = 10;
+			yStart = 310;
+		} 
+		else 
+		{
+			xStart = 150 + DisplayWidth;
+			yStart = 310;
+		}
+
+		if (select == LETTER) 
+		{
+			GUI.Box(new Rect(xStart,yStart,DisplayWidth,DisplayHeight),letterWords);
+		}
+		else if (select == BLOOD) 
+		{
+			GUI.Box(new Rect(xStart,yStart,DisplayWidth,DisplayHeight),bloodNote);
+		}
+		else if (select == POLICE) 
+		{
+			GUI.Box(new Rect(xStart,yStart,DisplayWidth,DisplayHeight),policeNote);
+		}
+		else if (select == DARK) 
+		{
+			GUI.Box(new Rect(xStart,yStart,DisplayWidth,DisplayHeight),journalDarkness);
+		}
+		else if (select == PEOPLE) 
+		{
+			GUI.Box(new Rect(xStart,yStart,DisplayWidth,DisplayHeight),journalPeople);
+		}
+		else if (select == FPIECE) 
+		{
+			GUI.Box(new Rect(xStart,yStart,DisplayWidth,DisplayHeight),journalFinalPiece);
+		}
+		else
+		{
+			if(num == 1)
+			{
+				GUI.Label(new Rect(xStart,yStart,DisplayWidth,DisplayHeight),itemSelectedOne);
+			}
+			else
+			{
+				GUI.Label(new Rect(xStart,yStart,DisplayWidth,DisplayHeight),itemSelectedTwo);
+			}
+		}
+
+	}
+
+	public void clueAchieved(int clueNum)
+	{
+		pickedUpClue = clueNum;
+		if (newClueFound && !menuOpen && !canNotSeeClues) 
+		{
+			string word = null;
+			string displayM = null;
+			Texture displayT = null;
+			if(clueNum == BLOOD)
+			{
+				word = "A Note Written In Blood";
+				displayT = bloodNote;
+				displayM = bloodNoteInfo;
+				bloodNoteFound = true;
+				PlayerPrefs.SetInt("bloodNoteFound", 1);
+			}
+			else if(clueNum == POLICE)
+			{
+				word = "A Police Memo";
+				displayM = policeNoteInfo;
+				displayT = policeNote;
+				policeNoteFound = true;
+				PlayerPrefs.SetInt("policeNoteFound", 1);
+			}
+			else if(clueNum == EMPTY)
+			{
+				word = "The Village is Empty";
+				displayM = villageEmptyInfo;
+				displayT = villageEmpty;
+				villageEmptyFound = true;
+				PlayerPrefs.SetInt("villageEmptyFound", 1);
+			}
+			else if(clueNum == ROBES)
+			{
+				word = "Bloody Robes";
+				displayM = priestRobesInfo;
+				displayT = priestRobes;
+				priestRobesFound = true;
+				PlayerPrefs.SetInt("priestRobesFound", 1);
+			}
+			else if(clueNum == BKNIFE)
+			{
+				word = "Bloody Knife";
+				displayT = knifeBlood;
+				displayM = bloodKnifeInfo;
+				knifeBloodFound = true;
+				PlayerPrefs.SetInt("knifeBloodFound", 1);
+			}
+			else if(clueNum == PHOTO)
+			{
+				word = "A PhotoGraph";
+				displayM = photographPriestInfo;
+				displayT = photographPriest;
+				photographPriestFound = true;
+				PlayerPrefs.SetInt("photographPriest",1);
+			}
+			else if(clueNum == DARK)
+			{
+				word = "A Page from the Priest's Journal";
+				displayM = journalDarknessInfo;
+				displayT = journalDarkness;
+				journalDarknessFound = true;
+				PlayerPrefs.SetInt("journalDarkness",1);
+			}
+			else if(clueNum == PEOPLE)
+			{
+				word = "A Page from the Priest's Journal";
+				displayM = journalPeopleInfo;
+				displayT = journalPeople;
+				journalPeopleFound = true;
+				PlayerPrefs.SetInt("journalPeopleFound",1);
+			}
+			else if(clueNum == FPIECE)
+			{
+				word = "A Page from the Priest's Journal";
+				displayM = journalFinalPieceInfo;
+				displayT = journalFinalPiece;
+				journalFinalPieceFound = true;
+				PlayerPrefs.SetInt("journalFinalPieceFound",1);
+			}
+			else if(clueNum == PKNIFE)
+			{
+				word = "The Knife Belong's to the Priest";
+				displayM = knifeIsPriestInfo;
+				displayT = knifeIsPriest;
+				knifeIsPriestKnown = true;
+				PlayerPrefs.SetInt("knifeIsPriestFound",1);
+			}
+			else if(clueNum == DISAPPEARED)
+			{
+				word = "The Villagers Have Disappeared";
+				displayM = villageDisappearedInfo;
+				displayT = villageDisappeared;
+				villageDisappearedKnown = true;
+				PlayerPrefs.SetInt("villageDisappearedKnown",1);
+			}
+			else if(clueNum == MURDEREDV)
+			{
+				word = "Someone Murdered the Villagers";
+				displayM = murderedVillagersInfo;
+				displayT = murderedVillagers;
+				murderedVillagersKnown = true;
+				PlayerPrefs.SetInt("murderedVillagersKnown",1);
+			}
+			else if(clueNum == PMURDERER)
+			{
+				word = "The High Priest Murdered the Villagers";
+				displayM = priestIsMurdererInfo;
+				displayT = priestIsMurderer;
+				priestIsMurdererKnown = true;
+				PlayerPrefs.SetInt("priestIsMurdererKnown",1);
+			}
+			else if(clueNum == SHADY)
+			{
+				word = "The High Priest is Involved In Something";
+				displayM = priestIsShadyInfo;
+				displayT = priestIsShady;
+				priestIsShadyKnown = true;
+				PlayerPrefs.SetInt("priestIsShadyKnown",1);
+			}
+			else if(clueNum == SACRIFIC)
+			{
+				word = "The Village was Ritually Sacrificed";
+				displayM = townSacrificInfo;
+				displayT = townSacrific;
+				townSacrificKnown = true;
+				PlayerPrefs.SetInt("townSacrificKnown",1);
+			}
+			else if(clueNum == MORE)
+			{
+				word = "The Ritual Requires One More Sacrifice";
+				displayM = oneMoreRequiredInfo;
+				displayT = oneMoreRequired;
+				oneMoreRequiredKnown = true;
+				PlayerPrefs.SetInt("oneMoreRequiredKnown",1);
+			}
+			else if(clueNum == TRAP)
+			{
+				word = "The Priest is Attempting to Summon One More Sacrific";
+				displayM = priestTrappingPersonInfo;
+				displayT = priestTrappingPerson;
+				priestTrappingPersonKnown = true;
+				PlayerPrefs.SetInt("priestTrappingPersonKnown",1);
+			}
+			else if(clueNum == FINAL)
+			{
+				word = "You are the Final Sacrific";
+				displayM = FinalSacrificInfo;
+				displayT = FinalSacrific;
+				FinalSacrificKnown = true;
+				PlayerPrefs.SetInt("FinalSacrificKnown",1);
+			}
+			word = "New ClUE FOUND: " + word;
+			GUI.Label (new Rect(200,200,700,25), word);
+			GUI.Box (new Rect(200,235,700,300), displayT);
+			GUI.Label (new Rect(200,545,700,200),displayM);
+
+		}
+
 	}
 	
 }
