@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SanityEffectController : MonoBehaviour {
 	private SanityBarController sbc;
-	private Light light;
+	private GameObject[] lights;
 	private Color insaneLight;
 
 	private bool writingDisplay = false;
@@ -22,7 +22,7 @@ public class SanityEffectController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		sbc = GetComponent<SanityBarController>();
-		light = GameObject.FindGameObjectWithTag ("Light").light;
+		lights = GameObject.FindGameObjectsWithTag ("Light");
 		insaneLight = new Color32 (193, 101, 101, 255);
 		style = new GUIStyle();
 		texture = new Texture2D(128, 128);
@@ -34,10 +34,10 @@ public class SanityEffectController : MonoBehaviour {
 		if (sbc.currSanity < 50f) {
 			byte gb = (byte)(101 - (2 * (50 - sbc.currSanity)));
 			insaneLight = new Color32(193, gb, gb, 255);
-			light.color = insaneLight;
+			SetLightColor(insaneLight);
 		}
-		else if (light.color != Color.white) {
-			light.color = Color.white;
+		else if (lights[0].light.color != Color.white) {
+			SetLightColor(Color.white);
 		}
 		if (sbc.currSanity < 35f && !writingDisplay) {
 			WritingOnTheWall(writing);
@@ -67,6 +67,12 @@ public class SanityEffectController : MonoBehaviour {
 				Instantiate (falseEnemy, player.position + 5 * (player.forward.normalized), player.rotation);
 				falseEnemySpawned = true;
 			}
+		}
+	}
+
+	void SetLightColor(Color c) {
+		for (int i = 0; i < lights.Length; i++) {
+			lights[i].light.color = c;
 		}
 	}
 }
