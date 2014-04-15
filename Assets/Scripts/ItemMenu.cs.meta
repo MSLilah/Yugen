@@ -14,7 +14,7 @@ MonoImporter:
   - journalDarkness: {fileID: 2800000, guid: 39780d6850b521b48ad80b80157f3459, type: 3}
   - journalPeople: {fileID: 2800000, guid: 7d494dbdc9eb43842822b6cf139065e5, type: 3}
   - journalFinalPiece: {fileID: 2800000, guid: 77edd31a716813344b3faa0fa7b0b7dd, type: 3}
-  - letter: {fileID: 2800000, guid: 483c97ac70e71eb478302b9a81ef1136, type: 3}
+  - letter: {fileID: 2800000, guid: 9a7dd2cdca4abbd42bdd1982431d25c2, type: 3}
   - letterWords: {fileID: 2800000, guid: eae0bf438ced05940bd5bb42caa3fa1d, type: 3}
   - villageDisappeared: {fileID: 2800000, guid: 223ab970a7e1f5842a1ab8f842a626d9,
       type: 3}

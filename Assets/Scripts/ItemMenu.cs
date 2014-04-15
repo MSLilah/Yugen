@@ -8,7 +8,7 @@ public class ItemMenu : MonoBehaviour {
 	public bool menuOpen = false;
 	public bool canNotSeeClues = false;
 	public bool newClueFound = false;
-	public int pickedUpClue = 3;
+	public int pickedUpClue = -1;
 	private bool attempt = false;
 	public string currentLevel;
 	public SanityBarController sbc;

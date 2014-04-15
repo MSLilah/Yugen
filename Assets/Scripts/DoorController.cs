@@ -30,6 +30,7 @@ public class DoorController : MonoBehaviour {
 	}
 
 	void Update() {
+
 		if (canEnter && Input.GetKeyDown (KeyCode.E)) {
 			im.saveClues();
 			sbc.saveSanity();
@@ -45,4 +46,12 @@ public class DoorController : MonoBehaviour {
 			Application.LoadLevel(levelToSwitch);
 		}
 	}
+	void OnGUI()
+	{
+		if (canEnter) 
+		{
+			GUI.Label(new Rect(Screen.width/2-100,Screen.height/2-100,200,200),"Press E to Walk Through Door");
+		}
+	}
+
 }
