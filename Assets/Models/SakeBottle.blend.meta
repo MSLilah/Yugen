@@ -15,6 +15,8 @@ ModelImporter:
     3300002: Plane_001
     4300000: Plane_001
     4300002: Plane
+    6400000: Plane
+    6400002: Plane_001
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -37,7 +39,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

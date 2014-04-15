@@ -15,6 +15,8 @@ ModelImporter:
     3300002: Plane
     4300000: Cylinder
     4300002: Plane
+    6400000: Cylinder
+    6400002: Plane
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -37,7 +39,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
