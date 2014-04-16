@@ -42,6 +42,7 @@ public class MainMenu : MonoBehaviour {
 		//Clean all the PlayerPrefs
 		PlayerPrefs.DeleteAll ();
 		//Set all the PlayerPrefs to their default value
+		PlayerPrefs.SetInt ("GameStarted", 0);
 		PlayerPrefs.SetInt("bloodNoteFound",0);
 		PlayerPrefs.SetInt("policeNoteFound",0);
 		PlayerPrefs.SetInt ("villageEmptyFound",0);
