@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
@@ -23,8 +23,11 @@ public class MainMenu : MonoBehaviour {
 		}
 
 		// Make the second button.
-		if(GUI.Button(new Rect(260,540,120,50), "Continue Game")) {
-			Application.LoadLevel(PlayerPrefs.GetString("LastKnownLevel"));
+		if (PlayerPrefs.GetInt ("GameExist", 0) == 1) 
+		{
+			if (GUI.Button (new Rect (260, 540, 120, 50), "Continue Game")) {
+					Application.LoadLevel (PlayerPrefs.GetString ("LastKnownLevel"));
+			}
 		}
 
 		if(GUI.Button(new Rect(580,540,120,50), "Game Credits")) {
@@ -43,6 +46,7 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.DeleteAll ();
 		//Set all the PlayerPrefs to their default value
 		PlayerPrefs.SetInt ("GameStarted", 0);
+		PlayerPrefs.SetInt ("GameExists", 0);
 		PlayerPrefs.SetInt("bloodNoteFound",0);
 		PlayerPrefs.SetInt("policeNoteFound",0);
 		PlayerPrefs.SetInt ("villageEmptyFound",0);

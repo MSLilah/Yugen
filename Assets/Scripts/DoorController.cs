@@ -8,6 +8,7 @@ public class DoorController : MonoBehaviour {
 	public SanityBarController sbc;
 	public ItemMenu im;
 	public string levelToSwitch;
+	public Texture doorCommand;
 	private Transform player;
 	
 	void Start() 
@@ -50,7 +51,7 @@ public class DoorController : MonoBehaviour {
 	{
 		if (canEnter) 
 		{
-			GUI.Label(new Rect(Screen.width/2-100,Screen.height/2-100,200,200),"Press E to Walk Through Door");
+			GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150), doorCommand);
 		}
 	}
 

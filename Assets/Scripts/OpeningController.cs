@@ -12,6 +12,7 @@ public class OpeningController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 	
 	}
 	
@@ -20,6 +21,7 @@ public class OpeningController : MonoBehaviour {
 	{
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
 		if(GUI.Button(new Rect(100,((Screen.height/2)-50),120,100), "Start Game")) {
+			PlayerPrefs.SetInt ("GameExist", 1);
 			Application.LoadLevel("villageScene");
 		}
 

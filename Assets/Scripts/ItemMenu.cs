@@ -160,14 +160,16 @@ public class ItemMenu : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
-		if(Input.GetKeyDown("q"))
+		if(PlayerPrefs.GetInt("GameStarted",0) == 1)
 		{
-			newClueFound = false;
-			menuOpen = !menuOpen;
-			clearSelectedItems();
+			if(Input.GetKeyDown("q"))
+			{
+				newClueFound = false;
+				menuOpen = !menuOpen;
+				clearSelectedItems();
+			}
 		}
-		if(Input.GetKeyDown ("z")) 
+		if(Input.anyKeyDown) 
 		{
 			newClueFound = false;
 		}
@@ -176,334 +178,336 @@ public class ItemMenu : MonoBehaviour {
 	
 
 	void OnGUI()
-	{
-		if (pickedUpClue != -1) 
+	{ 
+		if(PlayerPrefs.GetInt("GameStarted",0) == 1)
 		{
-			clueAchieved(pickedUpClue);
-		}
-		if (menuOpen) 
-		{
-			// Make the second button.
-			if (GUI.Button (new Rect (10, 130, 120, 50), "Save Game")) {
-					clearSelectedItems();
-					saveClues();
-					sbc.saveSanity();
-					attempt = true;
-					attemptMessage = "Game Saved!";
-					PlayerPrefs.SetString("LastKnownLevel", currentLevel);
-			}
-			if(canNotSeeClues)
+			if (pickedUpClue != -1) 
 			{
-				if (GUI.Button (new Rect (10, 190, 120, 50), "Main Menu")) {
-					Application.LoadLevel("Main Menu");
-				}
+				clueAchieved(pickedUpClue);
 			}
-			
-			if (GUI.Button (new Rect (10, 250, 120, 50), "Quit Game")) {
-					Application.Quit();
-			}
-			if(!canNotSeeClues)
+			if (menuOpen) 
 			{
-				if (GUI.Button (new Rect (10, 190, 120, 50), "Collectibles")) {
-					//Application.LoadLevel("GameCredits");
-				}
-
-				// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-				if (GUI.Button (new Rect (10, 70, 120, 50), "Clear Selected")) {
-					clearSelectedItems();
-				}
-
-				if(letterFound)
-				{
-					if(!FinalSacrificKnown)
-					{
-						if(GUI.Button(new Rect(150, 70, 120, 100), letter))
-						{
-							changedSelectedItem(LETTER, letterInfo);
-						}
-					}
-					else
-					{
-						GUI.Button(new Rect(150, 70, 120, 100), "Item Used");
-					}
-				}
-				else
-				{
-					GUI.Button(new Rect(150, 70, 120, 100), "Empty");
-				}
-
-				if(bloodNoteFound || murderedVillagersKnown)
-				{
-					if(!murderedVillagersKnown)
-					{
-						if(GUI.Button(new Rect(280, 70, 120, 100), bloodNote))
-						{
-							changedSelectedItem(BLOOD, bloodNoteInfo);
-						}
-					}
-					else if(!priestIsMurdererKnown)
-					{
-						if(GUI.Button(new Rect(280, 70, 120, 100), murderedVillagers))
-						{
-							changedSelectedItem(MURDEREDV, murderedVillagersInfo);
-						}
-					}
-					else if(!townSacrificKnown)
-					{
-						if(GUI.Button(new Rect(280, 70, 120, 100), priestIsMurderer))
-						{
-							changedSelectedItem(PMURDERER, priestIsMurdererInfo);
-						}
-					}
-					else
-					{
-						GUI.Button(new Rect(280, 70, 120, 100), "Item Used");
-					}
-
-				}
-				else
-				{
-					GUI.Button(new Rect(280, 70, 120, 100), "Empty");
-				}
-
-				if(policeNoteFound || villageDisappearedKnown)
-				{
-					if(!villageDisappearedKnown)
-					{
-						if(GUI.Button(new Rect(410, 70, 120, 100), policeNote))
-						{
-							changedSelectedItem(POLICE, policeNoteInfo);
-						}
-					}
-					else if(!murderedVillagersKnown)
-					{
-						if(GUI.Button(new Rect(410, 70, 120, 100), villageDisappeared))
-						{
-							changedSelectedItem(DISAPPEARED, villageDisappearedInfo);
-						}
-					}
-					else
-					{
-						GUI.Button(new Rect(410, 70, 120, 100), "Item Used");
-					}
-				}
-				else
-				{
-					GUI.Button(new Rect(410, 70, 120, 100), "Empty");
-				}
-
-				if(villageEmptyFound || villageDisappearedKnown)
-				{
-					if(!villageDisappearedKnown)
-					{
-						if(GUI.Button(new Rect(540, 70, 120, 100), villageEmpty))
-						{
-							changedSelectedItem(EMPTY, villageEmptyInfo);
-						}
-					}
-					else				
-					{
-						GUI.Button(new Rect(540, 70, 120, 100), "Item Used");
-					}
-				}
-				else
-				{
-					GUI.Button(new Rect(540, 70, 120, 100), "Empty");
-				}
-
-				if(knifeBloodFound || knifeIsPriestKnown)
-				{
-					if(!knifeIsPriestKnown)
-					{
-						if(GUI.Button(new Rect(670, 70, 120, 100), knifeBlood))
-						{
-							changedSelectedItem(BKNIFE, bloodKnifeInfo);
-						}
-					}
-					else if(!priestIsShadyKnown)
-					{
-						if(GUI.Button(new Rect(670, 70, 120, 100), knifeIsPriest))
-						{
-							changedSelectedItem(PKNIFE, knifeIsPriestInfo);
-						}
-					}
-					else
-					{
-						GUI.Button(new Rect(670, 70, 120, 100), "Item Used");
-					}
-				}
-				else
-				{
-					GUI.Button(new Rect(670, 70, 120, 100), "Empty");
-				}
-
-				////Start the Second Row of buttons
-
-				if(priestRobesFound || priestIsShadyKnown)
-				{
-					if(!priestIsShadyKnown)
-					{
-						if(GUI.Button(new Rect(150, 180, 120, 100), priestRobes))
-						{
-							changedSelectedItem(ROBES, priestRobesInfo);
-						}
-					}
-					else if(!priestIsMurdererKnown)
-					{
-						if(GUI.Button(new Rect(150, 180, 120, 100), priestIsShady))
-						{
-							changedSelectedItem(SHADY, priestIsShadyInfo);
-						}
-					}
-					else
-					{
-						GUI.Button(new Rect(150, 180, 120, 100), "Item Used");
-					}
-				}
-				else
-				{
-					GUI.Button(new Rect(150, 180, 120, 100), "Empty");
-				}
-
-				if(photographPriestFound || knifeIsPriestKnown)
-				{
-					if(!knifeIsPriestKnown)
-					{
-						if(GUI.Button(new Rect(280, 180, 120, 100), photographPriest))
-						{
-							changedSelectedItem(PHOTO, photographPriestInfo);
-						}
-					}
-					else if(knifeIsPriestKnown)
-					{
-						GUI.Button(new Rect(280, 180, 120, 100), "Item Used");
-					}
-				}
-				else
-				{
-					GUI.Button(new Rect(280, 180, 120, 100), "Empty");
-				}
-
-				if(journalDarknessFound || townSacrificKnown)
-				{
-					if(!townSacrificKnown)
-					{
-						if(GUI.Button(new Rect(410, 180, 120, 100), journalDarkness))
-						{
-							changedSelectedItem(DARK, journalDarknessInfo);
-						}
-					}
-					else if(!oneMoreRequiredKnown)
-					{
-						if(GUI.Button(new Rect(410, 180, 120, 100), townSacrific))
-						{
-							changedSelectedItem(SACRIFIC, townSacrificInfo);
-						}
-					}
-					else if(!priestTrappingPersonKnown)
-					{
-						if(GUI.Button(new Rect(410, 180, 120, 100), oneMoreRequired))
-						{
-							changedSelectedItem(MORE, oneMoreRequiredInfo);
-						}
-					}
-					else
-					{
-						GUI.Button(new Rect(410, 180, 120, 100), "Item Used");
-					}
-				}
-				else
-				{
-					GUI.Button(new Rect(410, 180, 120, 100), "Empty");
-				}
-
-				if(journalPeopleFound || oneMoreRequiredKnown)
-				{
-					if(!oneMoreRequiredKnown)
-					{
-						if(GUI.Button(new Rect(540, 180, 120, 100), journalPeople))
-						{
-							changedSelectedItem(PEOPLE, journalPeopleInfo);
-						}
-					}
-					else
-					{
-						GUI.Button(new Rect(540, 180, 120, 100), "Item Used");
-					}
-				}
-				else
-				{
-					GUI.Button(new Rect(540, 180, 120, 100), "Empty");
-				}
-
-				if(journalFinalPieceFound || FinalSacrificKnown || priestTrappingPersonKnown)
-				{
-					if(!priestTrappingPersonKnown)
-					{
-						if(GUI.Button(new Rect(670, 180, 120, 100), journalFinalPiece))
-						{
-							changedSelectedItem(FPIECE, journalFinalPieceInfo);
-						}
-					}
-					else if(!FinalSacrificKnown)
-					{
-						if(GUI.Button(new Rect(670, 180, 120, 100), priestTrappingPerson))
-						{
-							changedSelectedItem(TRAP, priestTrappingPersonInfo);
-						}
-					}
-					else
-					{
-						if(GUI.Button(new Rect(670, 180, 120, 100), FinalSacrific))
-						{
-							changedSelectedItem(FINAL, FinalSacrificInfo);
-						}
-					}
-				}
-				else
-				{
-					GUI.Button(new Rect(670, 180, 120, 100), "Empty");
-				}
-
-				//Display the Selected Clues
-
-				if(itemSelectedOne != null)
-				{
-					diplayClue(selectOne,1);
-				}
-
-				if(itemSelectedTwo != null)
-				{
-					diplayClue(selectTwo,2);
-				}
-
-				if(twoItemsSelected)
-				{
-					if(GUI.Button(new Rect(10+DisplayWidth+10,300,120,100),"Combine Items?"))
-					{
+				// Make the second button.
+				if (GUI.Button (new Rect (10, 130, 120, 50), "Save Game")) {
+						clearSelectedItems();
+						saveClues();
+						sbc.saveSanity();
 						attempt = true;
-						if(canItemsCombine())
+						attemptMessage = "Game Saved!";
+						PlayerPrefs.SetString("LastKnownLevel", currentLevel);
+				}
+				if(canNotSeeClues)
+				{
+					if (GUI.Button (new Rect (10, 190, 120, 50), "Main Menu")) {
+						Application.LoadLevel("Main Menu");
+					}
+				}
+				
+				if (GUI.Button (new Rect (10, 250, 120, 50), "Quit Game")) {
+						Application.Quit();
+				}
+				if(!canNotSeeClues)
+				{
+					if (GUI.Button (new Rect (10, 190, 120, 50), "Collectibles")) {
+						//Application.LoadLevel("GameCredits");
+					}
+
+					// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
+					if (GUI.Button (new Rect (10, 70, 120, 50), "Clear Selected")) {
+						clearSelectedItems();
+					}
+
+					if(letterFound)
+					{
+						if(!FinalSacrificKnown)
 						{
-							clearSelectedItems();
-							attemptMessage = "These things make more sense together!";
-							newClueFound = true;
-							menuOpen = false;
+							if(GUI.Button(new Rect(150, 70, 120, 100), letter))
+							{
+								changedSelectedItem(LETTER, letterInfo);
+							}
 						}
 						else
 						{
-							attemptMessage = "These items mean nothing together!";
+							GUI.Button(new Rect(150, 70, 120, 100), "Item Used");
 						}
 					}
-					
-				}
+					else
+					{
+						GUI.Button(new Rect(150, 70, 120, 100), "Empty");
+					}
 
-				if(attempt)
-				{
-					GUI.Label(new Rect(10+DisplayWidth+10,430,120,100),attemptMessage);
+					if(bloodNoteFound || murderedVillagersKnown)
+					{
+						if(!murderedVillagersKnown)
+						{
+							if(GUI.Button(new Rect(280, 70, 120, 100), bloodNote))
+							{
+								changedSelectedItem(BLOOD, bloodNoteInfo);
+							}
+						}
+						else if(!priestIsMurdererKnown)
+						{
+							if(GUI.Button(new Rect(280, 70, 120, 100), murderedVillagers))
+							{
+								changedSelectedItem(MURDEREDV, murderedVillagersInfo);
+							}
+						}
+						else if(!townSacrificKnown)
+						{
+							if(GUI.Button(new Rect(280, 70, 120, 100), priestIsMurderer))
+							{
+								changedSelectedItem(PMURDERER, priestIsMurdererInfo);
+							}
+						}
+						else
+						{
+							GUI.Button(new Rect(280, 70, 120, 100), "Item Used");
+						}
+
+					}
+					else
+					{
+						GUI.Button(new Rect(280, 70, 120, 100), "Empty");
+					}
+
+					if(policeNoteFound || villageDisappearedKnown)
+					{
+						if(!villageDisappearedKnown)
+						{
+							if(GUI.Button(new Rect(410, 70, 120, 100), policeNote))
+							{
+								changedSelectedItem(POLICE, policeNoteInfo);
+							}
+						}
+						else if(!murderedVillagersKnown)
+						{
+							if(GUI.Button(new Rect(410, 70, 120, 100), villageDisappeared))
+							{
+								changedSelectedItem(DISAPPEARED, villageDisappearedInfo);
+							}
+						}
+						else
+						{
+							GUI.Button(new Rect(410, 70, 120, 100), "Item Used");
+						}
+					}
+					else
+					{
+						GUI.Button(new Rect(410, 70, 120, 100), "Empty");
+					}
+
+					if(villageEmptyFound || villageDisappearedKnown)
+					{
+						if(!villageDisappearedKnown)
+						{
+							if(GUI.Button(new Rect(540, 70, 120, 100), villageEmpty))
+							{
+								changedSelectedItem(EMPTY, villageEmptyInfo);
+							}
+						}
+						else				
+						{
+							GUI.Button(new Rect(540, 70, 120, 100), "Item Used");
+						}
+					}
+					else
+					{
+						GUI.Button(new Rect(540, 70, 120, 100), "Empty");
+					}
+
+					if(knifeBloodFound || knifeIsPriestKnown)
+					{
+						if(!knifeIsPriestKnown)
+						{
+							if(GUI.Button(new Rect(670, 70, 120, 100), knifeBlood))
+							{
+								changedSelectedItem(BKNIFE, bloodKnifeInfo);
+							}
+						}
+						else if(!priestIsShadyKnown)
+						{
+							if(GUI.Button(new Rect(670, 70, 120, 100), knifeIsPriest))
+							{
+								changedSelectedItem(PKNIFE, knifeIsPriestInfo);
+							}
+						}
+						else
+						{
+							GUI.Button(new Rect(670, 70, 120, 100), "Item Used");
+						}
+					}
+					else
+					{
+						GUI.Button(new Rect(670, 70, 120, 100), "Empty");
+					}
+
+					////Start the Second Row of buttons
+
+					if(priestRobesFound || priestIsShadyKnown)
+					{
+						if(!priestIsShadyKnown)
+						{
+							if(GUI.Button(new Rect(150, 180, 120, 100), priestRobes))
+							{
+								changedSelectedItem(ROBES, priestRobesInfo);
+							}
+						}
+						else if(!priestIsMurdererKnown)
+						{
+							if(GUI.Button(new Rect(150, 180, 120, 100), priestIsShady))
+							{
+								changedSelectedItem(SHADY, priestIsShadyInfo);
+							}
+						}
+						else
+						{
+							GUI.Button(new Rect(150, 180, 120, 100), "Item Used");
+						}
+					}
+					else
+					{
+						GUI.Button(new Rect(150, 180, 120, 100), "Empty");
+					}
+
+					if(photographPriestFound || knifeIsPriestKnown)
+					{
+						if(!knifeIsPriestKnown)
+						{
+							if(GUI.Button(new Rect(280, 180, 120, 100), photographPriest))
+							{
+								changedSelectedItem(PHOTO, photographPriestInfo);
+							}
+						}
+						else if(knifeIsPriestKnown)
+						{
+							GUI.Button(new Rect(280, 180, 120, 100), "Item Used");
+						}
+					}
+					else
+					{
+						GUI.Button(new Rect(280, 180, 120, 100), "Empty");
+					}
+
+					if(journalDarknessFound || townSacrificKnown)
+					{
+						if(!townSacrificKnown)
+						{
+							if(GUI.Button(new Rect(410, 180, 120, 100), journalDarkness))
+							{
+								changedSelectedItem(DARK, journalDarknessInfo);
+							}
+						}
+						else if(!oneMoreRequiredKnown)
+						{
+							if(GUI.Button(new Rect(410, 180, 120, 100), townSacrific))
+							{
+								changedSelectedItem(SACRIFIC, townSacrificInfo);
+							}
+						}
+						else if(!priestTrappingPersonKnown)
+						{
+							if(GUI.Button(new Rect(410, 180, 120, 100), oneMoreRequired))
+							{
+								changedSelectedItem(MORE, oneMoreRequiredInfo);
+							}
+						}
+						else
+						{
+							GUI.Button(new Rect(410, 180, 120, 100), "Item Used");
+						}
+					}
+					else
+					{
+						GUI.Button(new Rect(410, 180, 120, 100), "Empty");
+					}
+
+					if(journalPeopleFound || oneMoreRequiredKnown)
+					{
+						if(!oneMoreRequiredKnown)
+						{
+							if(GUI.Button(new Rect(540, 180, 120, 100), journalPeople))
+							{
+								changedSelectedItem(PEOPLE, journalPeopleInfo);
+							}
+						}
+						else
+						{
+							GUI.Button(new Rect(540, 180, 120, 100), "Item Used");
+						}
+					}
+					else
+					{
+						GUI.Button(new Rect(540, 180, 120, 100), "Empty");
+					}
+
+					if(journalFinalPieceFound || FinalSacrificKnown || priestTrappingPersonKnown)
+					{
+						if(!priestTrappingPersonKnown)
+						{
+							if(GUI.Button(new Rect(670, 180, 120, 100), journalFinalPiece))
+							{
+								changedSelectedItem(FPIECE, journalFinalPieceInfo);
+							}
+						}
+						else if(!FinalSacrificKnown)
+						{
+							if(GUI.Button(new Rect(670, 180, 120, 100), priestTrappingPerson))
+							{
+								changedSelectedItem(TRAP, priestTrappingPersonInfo);
+							}
+						}
+						else
+						{
+							if(GUI.Button(new Rect(670, 180, 120, 100), FinalSacrific))
+							{
+								changedSelectedItem(FINAL, FinalSacrificInfo);
+							}
+						}
+					}
+					else
+					{
+						GUI.Button(new Rect(670, 180, 120, 100), "Empty");
+					}
+
+					//Display the Selected Clues
+
+					if(itemSelectedOne != null)
+					{
+						diplayClue(selectOne,1);
+					}
+
+					if(itemSelectedTwo != null)
+					{
+						diplayClue(selectTwo,2);
+					}
+
+					if(twoItemsSelected)
+					{
+						if(GUI.Button(new Rect(10+DisplayWidth+10,300,120,100),"Combine Items?"))
+						{
+							attempt = true;
+							if(canItemsCombine())
+							{
+								clearSelectedItems();
+								attemptMessage = "These things make more sense together!";
+								newClueFound = true;
+								menuOpen = false;
+							}
+							else
+							{
+								attemptMessage = "These items mean nothing together!";
+							}
+						}
+						
+					}
+
+					if(attempt)
+					{
+						GUI.Label(new Rect(10+DisplayWidth+10,430,120,100),attemptMessage);
+					}
 				}
 			}
 		}
-		
 		
 	}
 	
@@ -872,7 +876,7 @@ public class ItemMenu : MonoBehaviour {
 				FinalSacrificKnown = true;
 				PlayerPrefs.SetInt("FinalSacrificKnown",1);
 			}
-			word = "New ClUE FOUND: " + word;
+			word = "New CLUE FOUND: " + word;
 			GUI.Label (new Rect(200,200,700,25), word);
 			GUI.Box (new Rect(200,235,700,300), displayT);
 			GUI.Label (new Rect(200,545,700,200),displayM);

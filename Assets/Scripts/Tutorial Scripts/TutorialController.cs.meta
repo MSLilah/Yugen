@@ -2,7 +2,19 @@ fileFormatVersion: 2
 guid: dbd5b4b948aeb204e922da9bb97273d1
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - taskComplete: {fileID: 2800000, guid: b087ea8c524deb74e8077ddd99f7a9b6, type: 3}
+  - moveKeyPrompt: {fileID: 2800000, guid: b98252af1fe22a347b9924a3bd40594b, type: 3}
+  - sprintPrompt: {fileID: 2800000, guid: 7bba571d0c242384c89cc4cf493c419b, type: 3}
+  - sprintPrompt2: {fileID: 2800000, guid: 7dc02d6dc2d3a0849a62597fab7e057c, type: 3}
+  - staminaBarExample: {fileID: 2800000, guid: 36616b6f8cac81c47a27092b0e9c111d, type: 3}
+  - cluePrompt: {fileID: 2800000, guid: facc8f11d335e26488344710c0bf206c, type: 3}
+  - cluePrompt2: {fileID: 2800000, guid: 01c5a78a641acc54989673c819816856, type: 3}
+  - openMenuPrompt: {fileID: 2800000, guid: 4a572ba9b58accc41bf035568aa3c9c3, type: 3}
+  - combineCluePrompt: {fileID: 2800000, guid: 36616b6f8cac81c47a27092b0e9c111d, type: 3}
+  - shrinePrompt: {fileID: 2800000, guid: 18bbcbef20b7ba943b80f3cd9c15ff44, type: 3}
+  - tutorialFinished: {fileID: 2800000, guid: 5ce46fb7702f2dd4fa098f956b116f52, type: 3}
+  - st: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

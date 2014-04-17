@@ -3,67 +3,74 @@ using System.Collections;
 
 public class TutorialStepTrigger : MonoBehaviour {
 	public string stepName;
-	public bool canMoveOn;
 	public bool displayWarning;
-	TutorialController tu;
+	public TutorialController tu;
+	public float playerInitXPos = 554.9058f;
+	public float playerInitYPos = 10f;
+	public float playerInitZPos = 339.2068f;
+	public float playerInitYRotation = -86.88f;
+
+	public Texture sprintWarning;
+	public Texture clueWarning;
+	public Texture menuWarning;
+	public Texture combineWarning;
+	public Texture shrineWarning;
 
 	// Use this for initialization
 	void Start () 
 	{
-		canMoveOn = true;
 		tu = GameObject.FindGameObjectWithTag("Tutorial").GetComponent<TutorialController> ();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () {	
 	}
 
 	// Update is called once per frame
 	void OnTriggerEnter(Collider other) {
 		if (other.gameObject.tag == "Player") 
 		{
-			if(canMoveOn)
+			if(tu.canMoveOn)
 			{
 				if(stepName.Equals("SprintStart"))
 				{
-					print ("I got here");
 					tu.initalTuorialDone = true;
-					canMoveOn = false;
-					gameObject.collider.isTrigger = true;
+					tu.canMoveOn = false;
+					Destroy(this.gameObject);
 				}
 				else if(stepName.Equals("SprintEnd"))
 				{
 					tu.sprintTutorialDone = true;
-					canMoveOn = false;
-					Destroy(this.collider);
-					Destroy(this);
+					tu.canMoveOn = false;
+					tu.done = false;
+					Destroy(this.gameObject);
 				}
 				else if(stepName.Equals("ClueEnd"))
 				{
 					tu.clueTutorialDone = true;
-					canMoveOn = false;
-					Destroy(this.collider);
-					Destroy(this);
+					tu.canMoveOn = false;
+					tu.done = false;
+					Destroy(this.gameObject);
 				}
 				else if(stepName.Equals("MenuEnd"))
 				{
 					tu.menuTutorialDone = true;
-					canMoveOn = false;
-					Destroy(this.collider);
-					Destroy(this);
+					tu.canMoveOn = false;
+					tu.done = false;
+					Destroy(this.gameObject);
 				}
 				else if(stepName.Equals("MonsterEnd"))
 				{
 					tu.monsterSanTutorialDone = true;
-					canMoveOn = false;
-					Destroy(this);
+					tu.canMoveOn = false;
+					Destroy(this.gameObject);
 				}
 				else if(stepName.Equals("ShrineEnd"))
 				{
 					tu.tutorialComplete = true;
-					canMoveOn = true;
-					Destroy(this);
+					tu.canMoveOn = true;
+					tu.done = false;
+					Destroy(this.gameObject);
 				}
 			}
 		}
@@ -112,23 +119,23 @@ public class TutorialStepTrigger : MonoBehaviour {
 		{
 			if (!tu.sprintTutorialDone && stepName.Equals("SprintEnd"))
 			{
-				GUI.Label(new Rect(Screen.width/2-250,Screen.height/2 - 500, 300,300), "Sorry, you aren't ready to move on, why don't you practice sprinting?");
+				GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150),  sprintWarning);
 			}
 			else if (!tu.clueTutorialDone && stepName.Equals("ClueEnd"))
 			{
-				GUI.Label(new Rect(Screen.width/2-250,Screen.height/2 - 150, 500,300), "Sorry, you aren't ready to move on, why don't you try to pick up the Clues");
+				GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150),  clueWarning);
 			}
 			else if (!tu.menuTutorialDone && stepName.Equals("MenuEnd"))
 			{
-				GUI.Label(new Rect(Screen.width/2-250,Screen.height/2 - 150, 500,300), "Sorry, you aren't ready to move on, why don't you look at your inventory?");
+				GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150),  menuWarning);
 			}
 			else if (!tu.monsterSanTutorialDone && stepName.Equals("MonsterEnd"))
 			{
-				GUI.Label(new Rect(Screen.width/2-250,Screen.height/2 - 150, 300,500), "Sorry, you aren't ready to move on, why don't you attempted to combine clues?");
+				GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150),  combineWarning);
 			}
 			else if(!tu.tutorialComplete && stepName.Equals("ShrineEnd"))
 			{
-				GUI.Label(new Rect(Screen.width/2-250,Screen.height/2 - 150, 300,500), "Sorry, you aren't ready to enter the Village yet, why don't you pray at the Shrine?");
+				GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150),  shrineWarning);
 			}
 		}
 	}

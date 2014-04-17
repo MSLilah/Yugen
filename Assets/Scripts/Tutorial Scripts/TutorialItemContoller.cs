@@ -6,18 +6,24 @@ public class TutorialItemContoller : MonoBehaviour {
 	
 	public bool canPickUp = false;	
 	public TutorialMenu tm;
+	public TutorialController tu;
 	public int clueIdentity;
-	public string name;
 	private bool itemachieved = false;
+	public Texture clueCommand;
 	
 	void Start() 
 	{
 		tm = GameObject.FindGameObjectWithTag("TutorialMenu").GetComponent<TutorialMenu> ();
+		tu = GameObject.FindGameObjectWithTag("Tutorial").GetComponent<TutorialController> ();
 	}
 	// Update is called once per frame
 	void OnTriggerStay(Collider other) {
-		if (other.gameObject.tag == "Player") {
-			canPickUp = true;
+		if (tu.nextPrompt)
+		{
+				if (other.gameObject.tag == "Player") 
+				{
+					canPickUp = true;
+				}
 		}
 	}
 	
@@ -27,7 +33,7 @@ public class TutorialItemContoller : MonoBehaviour {
 		}
 		if (itemachieved) 
 		{
-			Destroy(GameObject.Find (name));
+			Destroy(this.gameObject);
 		}
 	}
 	
@@ -36,13 +42,14 @@ public class TutorialItemContoller : MonoBehaviour {
 			itemachieved = true;
 			tm.pickedUpClue = clueIdentity;
 			tm.newClueFound = true;
+			Destroy(this.gameObject);
 		}
 	}
 	void OnGUI()
 	{
 		if (canPickUp && !itemachieved) 
 		{
-			GUI.Label(new Rect(Screen.width/2-100,Screen.height/2-100,200,200),"Press E to Pick Up Clue");
+			GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150), clueCommand);
 		}
 	}
 }

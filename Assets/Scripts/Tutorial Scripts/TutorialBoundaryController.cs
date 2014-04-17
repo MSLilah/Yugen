@@ -3,6 +3,7 @@ using System.Collections;
 
 public class TutorialBoundaryController : MonoBehaviour {
 	public bool atBoundary;
+	public Texture tutorialBoundary;
 
 	// Use this for initialization
 	void Start () {
@@ -36,7 +37,7 @@ public class TutorialBoundaryController : MonoBehaviour {
 	{
 		if (atBoundary) 
 		{
-			GUI.Label (new Rect (Screen.width / 2 - 150, Screen.height / 2 - 150, 500, 300), "Oh NO!! I can't seem to go this way. I should try some where else.");
+			GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150), tutorialBoundary);
 		}
 	}
 }

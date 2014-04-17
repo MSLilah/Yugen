@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: f496c528f617fc345b335b63d57aebb5
+guid: a6f62b7d1a8f73a4caa8b8d0ec703517
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - tm: {instanceID: 0}
+  - startGame: {fileID: 2800000, guid: 5ce46fb7702f2dd4fa098f956b116f52, type: 3}
   - tu: {instanceID: 0}
-  - clueCommand: {fileID: 2800000, guid: 9f0921fc0ec44644bb7bb9ee7c29fb25, type: 3}
+  - tst: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

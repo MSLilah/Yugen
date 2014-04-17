@@ -10,6 +10,10 @@ public class TutorialController : MonoBehaviour {
 	public bool tutorialComplete;
 	public bool enteredVillage;
 	public bool taskIsComplete;
+	public bool canMoveOn;
+	public bool finalPrompt;
+	public bool nextPrompt;
+	public bool done;
 
 	//Textures used for the tutorial:
 	public Texture taskComplete;
@@ -22,19 +26,28 @@ public class TutorialController : MonoBehaviour {
 	public Texture openMenuPrompt;
 	public Texture combineCluePrompt;
 	public Texture shrinePrompt;
-	public Texture tutorialFinished;
 	public TutorialStepTrigger st;
+	public float playerInitXPos = 554.9058f;
+	public float playerInitYPos = 10f;
+	public float playerInitZPos = 339.2068f;
+	public float playerInitYRotation = -86.88f;
+	public float tutorialPlayerInitXPos = 581.7026f;
+	public float tutorialPlayerInitYPos = 10f;
+	public float tutorialPlayerInitZPos = 107.9105f;
+	public float tutorialPlayerInitYRotation = -316.1f;
 
 
 	// Use this for initialization
 	void Start () 
 	{
+		//PlayerPrefs.SetInt ("GameStarted", 0);
 		if (PlayerPrefs.GetInt ("GameStarted", 0) == 1) 
 		{
 			DestroyObject (GameObject.FindWithTag ("TutorialBoundary"));
 			DestroyObject (GameObject.FindWithTag ("TutorialTrigger"));
 			DestroyObject (GameObject.FindWithTag ("TutorialItem"));
 			DestroyObject (GameObject.FindWithTag ("TutorialEndBoundary"));
+			DestroyObject (GameObject.FindWithTag ("TutorialMenu"));
 			DestroyObject (GameObject.FindWithTag ("Tutorial"));
 		}
 		else 
@@ -46,6 +59,10 @@ public class TutorialController : MonoBehaviour {
 			monsterSanTutorialDone = false;
 			tutorialComplete = false;
 			enteredVillage = false;
+			canMoveOn = true;
+			nextPrompt = false;
+			finalPrompt = false;
+			done = false;
 			st = GameObject.FindGameObjectWithTag("TutorialTrigger").GetComponent<TutorialStepTrigger> ();
 		}
 	
@@ -61,64 +78,97 @@ public class TutorialController : MonoBehaviour {
 			DestroyObject(GameObject.FindWithTag("TutorialEndBoundary"));
 		}
 
+		if (finalPrompt && Input.GetKey ("left shift") && (Input.GetKey ("w") || Input.GetKey ("up"))) 
+		{
+			taskIsComplete = true;
+		}
 	}
+
 
 	void OnGUI()
 	{
 		if (taskIsComplete) 
 		{
-			if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 200), taskComplete)) 
+			if (GUI.Button (new Rect (Screen.width / 2 - 100, Screen.height / 2 - 100, 200, 100), taskComplete)) 
 			{
-					st.canMoveOn = true;
-					taskIsComplete = false;
+				canMoveOn = true;
+				taskIsComplete = false;
+				finalPrompt = false;
+				nextPrompt = false;
+				done = true;
 			}
 		}
 
 		if (!initalTuorialDone) 
 		{
 			//Display prompt
-			GUI.Box (new Rect(Screen.width-Screen.width/3-150,Screen.height-Screen.height/3-150,300,175), moveKeyPrompt);
+			GUI.Box (new Rect(Screen.width-Screen.width/3,Screen.height-Screen.height/4,300,140), moveKeyPrompt);
 		} 
 		else if (!sprintTutorialDone) 
 		{
-			if(GUI.Button (new Rect(Screen.width-Screen.width/3-150,Screen.height-Screen.height/3-150,300,300), sprintPrompt))
+			if(!done)
 			{
-				if(GUI.Button (new Rect(Screen.width-Screen.width/3-150,Screen.height-Screen.height/3-150,300,300), staminaBarExample))
+				if(!nextPrompt)
 				{
-					GUI.Box (new Rect(Screen.width-Screen.width/3-150,Screen.height-Screen.height/3-150,300,300), sprintPrompt2);
+					GUI.Box(new Rect(Screen.width-Screen.width/3,Screen.height-Screen.height/3,300,140), sprintPrompt);
+					if(GUI.Button(new Rect(Screen.width-Screen.width/3+90,Screen.height-Screen.height/3+150,120,50), "Next Prompt"))
+					{
+						nextPrompt = true;
+					}
+				}
+				if(nextPrompt && !finalPrompt)
+				{
+					GUI.Box(new Rect(Screen.width-Screen.width/3,Screen.height-Screen.height/3,300,140), staminaBarExample);
+					if(GUI.Button(new Rect(Screen.width-Screen.width/3+90,Screen.height-Screen.height/3+150,120,50), "Next Prompt"))
+					{
+						finalPrompt = true;
+					}
+				}
+				if(finalPrompt && !taskIsComplete)
+				{
+					GUI.Box(new Rect(Screen.width-Screen.width/3,Screen.height-Screen.height/3,300,140), sprintPrompt2);
 				}
 			}
 		} 
 		else if (!clueTutorialDone) 
 		{
-			if(GUI.Button (new Rect(Screen.width-Screen.width/3-150,Screen.height-Screen.height/3-150,300,300), cluePrompt))
+			if(!done)
 			{
-				GUI.Box (new Rect(Screen.width-Screen.width/3-150,Screen.height-Screen.height/3-150,300,300), cluePrompt2);
+				if(!nextPrompt)
+				{
+					GUI.Box(new Rect(Screen.width-Screen.width/3,Screen.height-Screen.height/3,300,140), cluePrompt);
+					if(GUI.Button(new Rect(Screen.width-Screen.width/3+90,Screen.height-Screen.height/3+150,120,50), "Next Prompt"))
+					{
+						nextPrompt = true;
+					}
+				}
+				if(nextPrompt && !taskIsComplete)
+				{
+					GUI.Box(new Rect(Screen.width-Screen.width/3,Screen.height-Screen.height/3,300,140), cluePrompt2);
+				}
 			}
 		} 
 		else if (!menuTutorialDone) 
 		{
-			GUI.Box (new Rect(Screen.width-Screen.width/3-150,Screen.height-Screen.height/3-150,300,300), openMenuPrompt);
+			if(!done)
+			{
+				GUI.Box(new Rect(Screen.width-Screen.width/3,Screen.height-Screen.height/3,300,140), openMenuPrompt);
+			}
 		} 
 		else if (!monsterSanTutorialDone) 
 		{
-			GUI.Box (new Rect(Screen.width-Screen.width/3-150,Screen.height-Screen.height/3-150,300,300), combineCluePrompt);
+			if(!done)
+			{
+				GUI.Box(new Rect(Screen.width-Screen.width/3,Screen.height-Screen.height/3, 290, 290), combineCluePrompt);
+			}
 		} 
 		else if (!tutorialComplete) 
 		{
-			GUI.Box (new Rect(Screen.width-Screen.width/3-150,Screen.height-Screen.height/3-150,300,300), shrinePrompt);
-		} 
-		else if (tutorialComplete) 
-		{
-			bool temp = true;
-			if(temp)
+			if(!done)
 			{
-				if(GUI.Button(new Rect(Screen.width-Screen.width/3-150,Screen.height-Screen.height/3-150,300,300), tutorialFinished))
-				{
-					temp = false;
-				}
+				GUI.Box(new Rect(Screen.width-Screen.width/3,Screen.height-Screen.height/3,300,140), shrinePrompt);
 			}
-		}
+		} 
 	}
-	
+
 }

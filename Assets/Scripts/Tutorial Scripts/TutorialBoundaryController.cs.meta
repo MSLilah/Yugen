@@ -2,7 +2,8 @@ fileFormatVersion: 2
 guid: 12e49a526f68fb94c9b583005273d234
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - tutorialBoundary: {fileID: 2800000, guid: e338116f2a1e8b24dab79dfd0a0e5c80, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
