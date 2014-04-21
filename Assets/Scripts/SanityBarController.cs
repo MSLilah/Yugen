@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SanityBarController : MonoBehaviour {
 	
-	private float maxSanity = 100f;
+	public float maxSanity = 100f;
 	public float currSanity = 100f;
 	private float sanityBarLength;
 	private GUIStyle style;
@@ -23,7 +23,7 @@ public class SanityBarController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		sanityBarLength = (Screen.width / 2) * (currSanity / maxSanity);
+		sanityBarLength = (Screen.width / 2) * (currSanity / 100f);
 	}
 	
 	void OnGUI() {
