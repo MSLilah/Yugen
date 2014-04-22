@@ -2,7 +2,7 @@
 var stepSound : AudioClip;
 private var chMotor : CharacterMotor;
 private var controller : CharacterController;
-private var stepTimer = 0.5;
+private var stepTimer = 0.888;
 function Start () {
 	chMotor = GetComponent(CharacterMotor);
 	controller = GetComponent(CharacterController);
@@ -25,6 +25,6 @@ function StepSound()
 	if(stepTimer <= 0)
 	{
 		audio.PlayOneShot(stepSound);
-		stepTimer = 0.8;
+		stepTimer = 0.888;
 	}
 }
