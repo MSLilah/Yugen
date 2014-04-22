@@ -1,0 +1,147 @@
+fileFormatVersion: 2
+guid: d65c39eec1716d94ba54547a665344f5
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: Circle
+    100002: Cube
+    100004: Cube_001
+    100006: Cube_002
+    100008: Cube_003
+    100010: Cube_004
+    100012: Cube_005
+    100014: //RootNode
+    100016: Plane
+    100018: Plane_001
+    100020: Plane_002
+    100022: Plane_003
+    100024: Plane_004
+    100026: Plane_005
+    100028: Torus
+    100030: Torus_001
+    100032: Torus_002
+    100034: Torus_003
+    400000: Circle
+    400002: Cube
+    400004: Cube_001
+    400006: Cube_002
+    400008: Cube_003
+    400010: Cube_004
+    400012: Cube_005
+    400014: //RootNode
+    400016: Plane
+    400018: Plane_001
+    400020: Plane_002
+    400022: Plane_003
+    400024: Plane_004
+    400026: Plane_005
+    400028: Torus
+    400030: Torus_001
+    400032: Torus_002
+    400034: Torus_003
+    2300000: Circle
+    2300002: Cube
+    2300004: Cube_001
+    2300006: Cube_002
+    2300008: Cube_003
+    2300010: Cube_004
+    2300012: Cube_005
+    2300014: Plane
+    2300016: Plane_001
+    2300018: Plane_002
+    2300020: Plane_003
+    2300022: Plane_004
+    2300024: Plane_005
+    2300026: Torus
+    2300028: Torus_001
+    2300030: Torus_002
+    2300032: Torus_003
+    3300000: Circle
+    3300002: Cube
+    3300004: Cube_001
+    3300006: Cube_002
+    3300008: Cube_003
+    3300010: Cube_004
+    3300012: Cube_005
+    3300014: Plane
+    3300016: Plane_001
+    3300018: Plane_002
+    3300020: Plane_003
+    3300022: Plane_004
+    3300024: Plane_005
+    3300026: Torus
+    3300028: Torus_001
+    3300030: Torus_002
+    3300032: Torus_003
+    4300000: Plane_005
+    4300002: Plane_004
+    4300004: Plane_003
+    4300006: Plane_002
+    4300008: Plane_001
+    4300010: Plane
+    4300012: Torus_003
+    4300014: Torus_002
+    4300016: Circle
+    4300018: Torus_001
+    4300020: Torus
+    4300022: Cube_005
+    4300024: Cube_004
+    4300026: Cube_003
+    4300028: Cube_002
+    4300030: Cube_001
+    4300032: Cube
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
