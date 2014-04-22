@@ -310,6 +310,67 @@ ModelImporter:
     4300116: Cube_002
     4300118: Cube_001
     4300120: Cube
+    6400000: Cube
+    6400002: Cube_001
+    6400004: Cube_002
+    6400006: Cube_003
+    6400008: Cube_004
+    6400010: Cube_005
+    6400012: Cube_006
+    6400014: Cube_007
+    6400016: Cube_008
+    6400018: Cube_009
+    6400020: Cube_010
+    6400022: Cube_011
+    6400024: Cube_012
+    6400026: Cube_013
+    6400028: Cube_014
+    6400030: Cube_015
+    6400032: Cube_016
+    6400034: Cube_017
+    6400036: Cube_018
+    6400038: Cube_019
+    6400040: Cube_020
+    6400042: Cube_021
+    6400044: Cube_022
+    6400046: Cube_023
+    6400048: Cube_024
+    6400050: Cube_025
+    6400052: Cube_026
+    6400054: Cube_027
+    6400056: Cube_028
+    6400058: Cube_029
+    6400060: Cube_030
+    6400062: Cube_031
+    6400064: Cube_032
+    6400066: Cube_033
+    6400068: Cube_034
+    6400070: Cube_035
+    6400072: Cube_036
+    6400074: Cube_037
+    6400076: Cube_038
+    6400078: Cube_039
+    6400080: Cube_040
+    6400082: Cube_041
+    6400084: Cube_042
+    6400086: Cube_043
+    6400088: Cube_044
+    6400090: Cube_045
+    6400092: Cube_046
+    6400094: Cube_047
+    6400096: Cube_048
+    6400098: Cube_049
+    6400100: Cube_050
+    6400102: Cube_051
+    6400104: Cube_052
+    6400106: Cube_053
+    6400108: Cube_054
+    6400110: Cube_055
+    6400112: Cube_056
+    6400114: floor
+    6400116: floor_001
+    6400118: floor_002
+    6400120: floor_003
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -332,7 +393,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
