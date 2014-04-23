@@ -10,9 +10,11 @@ public class ItemController : MonoBehaviour {
 	private bool itemachieved = false;
 	public Texture clueCommand;
 	private GameObject[] enemies;
+	private SanityBarController sbc;
 	
 	void Start() 
 	{
+		sbc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<SanityBarController> ();
 		im = GameObject.FindGameObjectWithTag("ItemMenu").GetComponent<ItemMenu> ();
 		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		EnableEnemies (false);
@@ -37,6 +39,7 @@ public class ItemController : MonoBehaviour {
 			im.newClueFound = true;
 			Destroy(this.gameObject);
 			EnableEnemies(true);
+			sbc.maxSanity -= 7;
 		}
 	}
 	void OnGUI()

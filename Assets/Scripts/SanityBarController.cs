@@ -23,6 +23,9 @@ public class SanityBarController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (currSanity > maxSanity) {
+			currSanity = maxSanity;
+		}
 		sanityBarLength = (Screen.width / 2) * (currSanity / 100f);
 	}
 	
