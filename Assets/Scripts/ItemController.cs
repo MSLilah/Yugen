@@ -4,16 +4,25 @@ using System.Collections;
 public class ItemController : MonoBehaviour {
 	
 	
-	public bool canPickUp = false;	
+	public bool canPickUp;	
 	public ItemMenu im;
 	public int clueIdentity;
-	private bool itemachieved = false;
+	private bool itemachieved;
 	public Texture clueCommand;
+	public string objectKey;
 	private GameObject[] enemies;
+	private SanityBarController sbc;
 	
 	void Start() 
 	{
+		if (PlayerPrefs.GetInt (objectKey) == 1) 
+		{
+			Destroy(this.gameObject);
+		}
+		sbc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<SanityBarController> ();
 		im = GameObject.FindGameObjectWithTag("ItemMenu").GetComponent<ItemMenu> ();
+		canPickUp = false;
+		itemachieved = false;
 		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
 		EnableEnemies (false);
 	}
@@ -37,6 +46,8 @@ public class ItemController : MonoBehaviour {
 			im.newClueFound = true;
 			Destroy(this.gameObject);
 			EnableEnemies(true);
+			sbc.maxSanity -= 7;
+			//Destroy(this.gameObject);
 		}
 	}
 	void OnGUI()

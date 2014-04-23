@@ -2,7 +2,9 @@ fileFormatVersion: 2
 guid: da4f0aef76ddf414c85a04ce8aea52ad
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - im: {instanceID: 0}
+  - clueCommand: {fileID: 2800000, guid: 1013576db7663eb4da038f0b2560f96f, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

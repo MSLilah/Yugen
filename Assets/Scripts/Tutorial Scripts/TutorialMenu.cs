@@ -3,11 +3,11 @@ using System.Collections;
 
 public class TutorialMenu : MonoBehaviour {
 
-	public bool menuOpen = false;
-	public bool canNotSeeClues = false;
-	public bool newClueFound = false;
-	public int pickedUpClue = -1;
-	private bool attempt = false;
+	public bool menuOpen;
+	public bool canNotSeeClues;
+	public bool newClueFound;
+	public int pickedUpClue;
+	private bool attempt;
 	public TutorialController tu;
 
 	public Texture deathClue;
@@ -35,10 +35,16 @@ public class TutorialMenu : MonoBehaviour {
 	private string attemptMessage = null;
 	private int DisplayWidth = (Screen.width - 150) / 2;
 	private int DisplayHeight = Screen.height - 300;
+	private bool temphold = false;
 
 
 	// Use this for initialization
 	void Start () {
+		menuOpen = false;
+		canNotSeeClues = false;
+		pickedUpClue = -1;
+		attempt = false;
+		newClueFound = false;
 		tu = GameObject.FindGameObjectWithTag("Tutorial").GetComponent<TutorialController> ();
 	}
 	
@@ -50,19 +56,25 @@ public class TutorialMenu : MonoBehaviour {
 			{
 				if(Input.GetKeyDown("q"))
 				{
+					MouseLook.noPrompt = !(MouseLook.noPrompt);
+					newClueFound = false;
 					menuOpen = !menuOpen;
 					clearSelectedItems();
 				}
 
 			}
-			if(Input.anyKeyDown) 
+			if(Input.GetKeyDown("w")) 
 			{
 				newClueFound = false;
 				if(deathKnown)
 				{
 					if(!tu.monsterSanTutorialDone)
 					{
-						tu.taskIsComplete = true;
+						if(!temphold)
+						{
+							tu.taskIsComplete = true;
+							temphold = true;
+						}
 					}
 				}
 			}

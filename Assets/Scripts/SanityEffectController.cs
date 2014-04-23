@@ -19,6 +19,7 @@ public class SanityEffectController : MonoBehaviour {
 	public GameObject falseEnemy;
 
 	private Transform player;
+
 	// Use this for initialization
 	void Start () {
 		sbc = GetComponent<SanityBarController>();
@@ -27,6 +28,7 @@ public class SanityEffectController : MonoBehaviour {
 		style = new GUIStyle();
 		texture = new Texture2D(128, 128);
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
+		sbc.currSanity = 35f;
 	}
 	
 	// Update is called once per frame
@@ -50,6 +52,10 @@ public class SanityEffectController : MonoBehaviour {
 		if (sbc.currSanity < 20f && !falseEnemySpawned) {
 			SpawnFalseEnemy();
 		}
+
+		if (sbc.currSanity < 40f && !Camera.main.audio.isPlaying) {
+			PlayScaryNoise();
+		}
 	}
 
 	void WritingOnTheWall(Material m) {
@@ -60,7 +66,7 @@ public class SanityEffectController : MonoBehaviour {
 	}
 
 	void SpawnFalseEnemy() {
-		int random = Random.Range (0, 100);
+		int random = Random.Range (0, 10000);
 		if (random < 20) {
 			RaycastHit hit;
 			if (!Physics.Raycast (player.position, player.forward.normalized, out hit, 5)) {
@@ -73,6 +79,13 @@ public class SanityEffectController : MonoBehaviour {
 	void SetLightColor(Color c) {
 		for (int i = 0; i < lights.Length; i++) {
 			lights[i].light.color = c;
+		}
+	}
+
+	void PlayScaryNoise() {
+		int random = Random.Range (0, 10000);
+		if (random < 5) {
+			Camera.main.audio.Play ();
 		}
 	}
 }

@@ -67,7 +67,7 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetInt("priestTrappingPersonKnown",0);
 		PlayerPrefs.SetInt("FinalSacificKnown",0);
 		PlayerPrefs.SetFloat("SanityLevel", 100f);
-		PlayerPrefs.SetFloat("Health",100f);
+		PlayerPrefs.SetFloat("MaxSanityLevel",100f);
 		PlayerPrefs.SetString("LastKnownLevel", "villageScene");
 	}
 }
