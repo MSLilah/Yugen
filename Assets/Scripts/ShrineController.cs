@@ -28,6 +28,7 @@ public class ShrineController : MonoBehaviour {
 	void Update () {
 		if (canRestore && Input.GetKeyDown (KeyCode.E)) {
 			sbc.currSanity = sbc.maxSanity;
+			sbc.saveSanity();
 		}
 	
 	}

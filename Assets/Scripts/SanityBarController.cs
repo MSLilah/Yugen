@@ -15,6 +15,7 @@ public class SanityBarController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currSanity = PlayerPrefs.GetFloat ("SanityLevel", 100f);
+		maxSanity = PlayerPrefs.GetFloat ("MaxSanityLevel", 100f);
 		sanityBarLength = Screen.width / 2;
 		style = new GUIStyle();
 		texture = new Texture2D(128, 128);
@@ -42,6 +43,7 @@ public class SanityBarController : MonoBehaviour {
 
 	public void saveSanity()
 	{
+		PlayerPrefs.SetFloat ("MaxSanityLevel", maxSanity);
 		PlayerPrefs.SetFloat ("SanityLevel", currSanity);
 	}
 }

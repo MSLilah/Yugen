@@ -64,7 +64,7 @@ public class ItemMenu : MonoBehaviour {
 	public Texture FinalSacrific;
 
 	//These are constants that will help know what is items are selected
-	//Letter to the MadMan
+	//Letter to the MadMan give at start
 	public const int LETTER = 0;
 	//A note Written in Blood
 	public const int BLOOD = 1;
@@ -79,11 +79,11 @@ public class ItemMenu : MonoBehaviour {
 	//Photography of priest at the altar
 	public const int PHOTO = 6;
 	public const int PKNIFE = 7;
-	//Journal Entry #1
+	//Journal Entry #1  
 	public const int DARK = 8;
-	//Journal Entry #2
+	//Journal Entry #2 
 	public const int PEOPLE = 9;
-	//Journal Entry #3
+	//Journal Entry #3 
 	public const int FPIECE = 10;
 	public const int DISAPPEARED = 12;
 	public const int MURDEREDV = 13;
@@ -204,15 +204,11 @@ public class ItemMenu : MonoBehaviour {
 					}
 				}
 				
-				if (GUI.Button (new Rect (10, 250, 120, 50), "Quit Game")) {
+				if (GUI.Button (new Rect (10, 190, 120, 50), "Quit Game")) {
 						Application.Quit();
 				}
 				if(!canNotSeeClues)
 				{
-					if (GUI.Button (new Rect (10, 190, 120, 50), "Collectibles")) {
-						//Application.LoadLevel("GameCredits");
-					}
-
 					// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
 					if (GUI.Button (new Rect (10, 70, 120, 50), "Clear Selected")) {
 						clearSelectedItems();
