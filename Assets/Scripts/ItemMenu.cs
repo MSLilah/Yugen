@@ -164,12 +164,13 @@ public class ItemMenu : MonoBehaviour {
 		{
 			if(Input.GetKeyDown("q"))
 			{
+				MouseLook.noPrompt = !(MouseLook.noPrompt);
 				newClueFound = false;
 				menuOpen = !menuOpen;
 				clearSelectedItems();
 			}
 		}
-		if(Input.anyKeyDown) 
+		if(Input.GetKeyDown("w")) 
 		{
 			newClueFound = false;
 		}

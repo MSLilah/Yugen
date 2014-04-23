@@ -4,17 +4,21 @@ using System.Collections;
 public class TutorialItemContoller : MonoBehaviour {
 	
 	
-	public bool canPickUp = false;	
+	public bool canPickUp;	
 	public TutorialMenu tm;
 	public TutorialController tu;
 	public int clueIdentity;
-	private bool itemachieved = false;
+	private bool itemachieved;
 	public Texture clueCommand;
+	private SanityBarController sbc;
 	
 	void Start() 
 	{
+		itemachieved = false;
+		canPickUp = false;
 		tm = GameObject.FindGameObjectWithTag("TutorialMenu").GetComponent<TutorialMenu> ();
 		tu = GameObject.FindGameObjectWithTag("Tutorial").GetComponent<TutorialController> ();
+		sbc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<SanityBarController> ();
 	}
 	// Update is called once per frame
 	void OnTriggerStay(Collider other) {
@@ -31,10 +35,6 @@ public class TutorialItemContoller : MonoBehaviour {
 		if (other.gameObject.tag == "Player") {
 			canPickUp = false;
 		}
-		if (itemachieved) 
-		{
-			Destroy(this.gameObject);
-		}
 	}
 	
 	void Update() {
@@ -43,6 +43,7 @@ public class TutorialItemContoller : MonoBehaviour {
 			tm.pickedUpClue = clueIdentity;
 			tm.newClueFound = true;
 			Destroy(this.gameObject);
+			sbc.currSanity -= 25;
 		}
 	}
 	void OnGUI()

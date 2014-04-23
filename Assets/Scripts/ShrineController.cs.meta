@@ -1,0 +1,9 @@
+fileFormatVersion: 2
+guid: 2d4441c0447dd0f45879d94d34a4bf9e
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - shrineCommand: {fileID: 2800000, guid: 53ef0fc94a8dda94e9e485622c852196, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

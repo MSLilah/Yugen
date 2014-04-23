@@ -63,6 +63,9 @@ public class TutorialStepTrigger : MonoBehaviour {
 				{
 					tu.monsterSanTutorialDone = true;
 					tu.canMoveOn = false;
+					tu.done = false;
+					tu.taskIsComplete = false;
+					MouseLook.noPrompt = true;
 					Destroy(this.gameObject);
 				}
 				else if(stepName.Equals("ShrineEnd"))

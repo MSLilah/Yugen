@@ -50,13 +50,14 @@ public class TutorialStartGameTrigger : MonoBehaviour {
 			if(tu.tutorialComplete)
 			{
 				GUI.Label(new Rect(Screen.width/2,Screen.height/2, 300,150), startGame);
+				MouseLook.noPrompt = false;
 				if(GUI.Button(new Rect(Screen.width/2+75,Screen.height/2+150, 100,50), "Enter Village"))
 				{
-					print ("The player will now move");
 					PlayerInitialPlacementController.lastKnownPlayerPosition = new Vector3(playerInitXPos, playerInitYPos, playerInitZPos);
 					PlayerInitialPlacementController.lastKnownPlayerRotation = new Quaternion(0.0f, playerInitYRotation, 0.0f, 0.0f);
 					PlayerInitialPlacementController.movePlayer = true;
 					PlayerPrefs.SetInt("GameStarted", 1);
+					MouseLook.noPrompt = true;
 					Application.LoadLevel("villageScene");
 				}
 			}
