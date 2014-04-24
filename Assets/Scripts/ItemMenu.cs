@@ -12,6 +12,7 @@ public class ItemMenu : MonoBehaviour {
 	private bool attempt = false;
 	public string currentLevel;
 	public SanityBarController sbc;
+	public GameCompletionController gcc;
 	//these are the booleans for the clues that can be found
 	public bool bloodNoteFound;
 	public bool policeNoteFound;
@@ -135,6 +136,7 @@ public class ItemMenu : MonoBehaviour {
 	void Start () 
 	{
 		sbc = GameObject.FindGameObjectWithTag("GameController").GetComponent<SanityBarController> ();
+		gcc = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameCompletionController> ();
 		canNotSeeClues = false;
 		PlayerPrefs.SetString("LastKnownScene", currentLevel);
 		bloodNoteFound = setBooleanVariable(PlayerPrefs.GetInt("bloodNoteFound"));
@@ -735,7 +737,6 @@ public class ItemMenu : MonoBehaviour {
 				displayT = bloodNote;
 				displayM = bloodNoteInfo;
 				bloodNoteFound = true;
-				PlayerPrefs.SetInt("bloodNoteFound", 1);
 			}
 			else if(clueNum == POLICE)
 			{
@@ -743,7 +744,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = policeNoteInfo;
 				displayT = policeNote;
 				policeNoteFound = true;
-				PlayerPrefs.SetInt("policeNoteFound", 1);
 			}
 			else if(clueNum == EMPTY)
 			{
@@ -751,7 +751,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = villageEmptyInfo;
 				displayT = villageEmpty;
 				villageEmptyFound = true;
-				PlayerPrefs.SetInt("villageEmptyFound", 1);
 			}
 			else if(clueNum == ROBES)
 			{
@@ -759,7 +758,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = priestRobesInfo;
 				displayT = priestRobes;
 				priestRobesFound = true;
-				PlayerPrefs.SetInt("priestRobesFound", 1);
 			}
 			else if(clueNum == BKNIFE)
 			{
@@ -767,7 +765,6 @@ public class ItemMenu : MonoBehaviour {
 				displayT = knifeBlood;
 				displayM = bloodKnifeInfo;
 				knifeBloodFound = true;
-				PlayerPrefs.SetInt("knifeBloodFound", 1);
 			}
 			else if(clueNum == PHOTO)
 			{
@@ -775,7 +772,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = photographPriestInfo;
 				displayT = photographPriest;
 				photographPriestFound = true;
-				PlayerPrefs.SetInt("photographPriest",1);
 			}
 			else if(clueNum == DARK)
 			{
@@ -783,7 +779,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = journalDarknessInfo;
 				displayT = journalDarkness;
 				journalDarknessFound = true;
-				PlayerPrefs.SetInt("journalDarkness",1);
 			}
 			else if(clueNum == PEOPLE)
 			{
@@ -791,7 +786,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = journalPeopleInfo;
 				displayT = journalPeople;
 				journalPeopleFound = true;
-				PlayerPrefs.SetInt("journalPeopleFound",1);
 			}
 			else if(clueNum == FPIECE)
 			{
@@ -799,7 +793,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = journalFinalPieceInfo;
 				displayT = journalFinalPiece;
 				journalFinalPieceFound = true;
-				PlayerPrefs.SetInt("journalFinalPieceFound",1);
 			}
 			else if(clueNum == PKNIFE)
 			{
@@ -807,7 +800,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = knifeIsPriestInfo;
 				displayT = knifeIsPriest;
 				knifeIsPriestKnown = true;
-				PlayerPrefs.SetInt("knifeIsPriestFound",1);
 			}
 			else if(clueNum == DISAPPEARED)
 			{
@@ -815,7 +807,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = villageDisappearedInfo;
 				displayT = villageDisappeared;
 				villageDisappearedKnown = true;
-				PlayerPrefs.SetInt("villageDisappearedKnown",1);
 			}
 			else if(clueNum == MURDEREDV)
 			{
@@ -823,7 +814,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = murderedVillagersInfo;
 				displayT = murderedVillagers;
 				murderedVillagersKnown = true;
-				PlayerPrefs.SetInt("murderedVillagersKnown",1);
 			}
 			else if(clueNum == PMURDERER)
 			{
@@ -831,7 +821,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = priestIsMurdererInfo;
 				displayT = priestIsMurderer;
 				priestIsMurdererKnown = true;
-				PlayerPrefs.SetInt("priestIsMurdererKnown",1);
 			}
 			else if(clueNum == SHADY)
 			{
@@ -839,7 +828,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = priestIsShadyInfo;
 				displayT = priestIsShady;
 				priestIsShadyKnown = true;
-				PlayerPrefs.SetInt("priestIsShadyKnown",1);
 			}
 			else if(clueNum == SACRIFIC)
 			{
@@ -847,7 +835,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = townSacrificInfo;
 				displayT = townSacrific;
 				townSacrificKnown = true;
-				PlayerPrefs.SetInt("townSacrificKnown",1);
 			}
 			else if(clueNum == MORE)
 			{
@@ -855,7 +842,6 @@ public class ItemMenu : MonoBehaviour {
 				displayM = oneMoreRequiredInfo;
 				displayT = oneMoreRequired;
 				oneMoreRequiredKnown = true;
-				PlayerPrefs.SetInt("oneMoreRequiredKnown",1);
 			}
 			else if(clueNum == TRAP)
 			{
@@ -863,15 +849,13 @@ public class ItemMenu : MonoBehaviour {
 				displayM = priestTrappingPersonInfo;
 				displayT = priestTrappingPerson;
 				priestTrappingPersonKnown = true;
-				PlayerPrefs.SetInt("priestTrappingPersonKnown",1);
 			}
 			else if(clueNum == FINAL)
 			{
-				word = "You are the Final Sacrific";
-				displayM = FinalSacrificInfo;
-				displayT = FinalSacrific;
 				FinalSacrificKnown = true;
 				PlayerPrefs.SetInt("FinalSacrificKnown",1);
+				gcc.gameComplete = true;
+				return;
 			}
 			word = "New CLUE FOUND: " + word;
 			GUI.Label (new Rect(200,200,700,25), word);

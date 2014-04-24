@@ -3,9 +3,7 @@ using System.Collections;
 
 public class BoundaryController : MonoBehaviour {
 	public bool atBoundary;
-	public Texture boundaryImage;
-	public Texture riverBoundaryImage;
-	
+
 	// Use this for initialization
 	void Start () {
 		atBoundary = false;
@@ -36,17 +34,6 @@ public class BoundaryController : MonoBehaviour {
 	
 	void OnGUI()
 	{
-		if (atBoundary) 
-		{
 
-			if(this.gameObject.tag.Equals("River"))
-			{
-				//GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150), riverBoundaryImage);
-			}
-			else
-			{
-				//GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150), boundaryImage);
-			}
-		}
 	}
 }

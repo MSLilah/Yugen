@@ -2,7 +2,10 @@ fileFormatVersion: 2
 guid: 1c8f823e5983eaa47bdebb7a41995add
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - sbc: {instanceID: 0}
+  - im: {instanceID: 0}
+  - doorCommand: {fileID: 2800000, guid: 90e275aea53ae0a4c9499345a6a1f4a1, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
