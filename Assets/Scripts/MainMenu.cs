@@ -2,44 +2,47 @@ using UnityEngine;
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
-
+	
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 	
-
+	
 	void OnGUI()
 	{
 		// Make the first button. If it is pressed, Application.Loadlevel (1) will be executed
-		if(GUI.Button(new Rect(100,540,120,50), "Start New Game")) {
+		if(GUI.Button(new Rect(Screen.width/2-350,Screen.height/2 + 100,120,50), "Start New Game")) {
 			newGameSetUP();
 			Application.LoadLevel("OpeningScene");
 		}
-
+		
 		// Make the second button.
 		if (PlayerPrefs.GetInt ("GameExist", 0) == 1) 
 		{
-			if (GUI.Button (new Rect (260, 540, 120, 50), "Continue Game")) {
-					Application.LoadLevel (PlayerPrefs.GetString ("LastKnownLevel"));
+			if (GUI.Button (new Rect(Screen.width/2-200, Screen.height/2 + 100, 120, 50), "Continue Game")) {
+				Application.LoadLevel (PlayerPrefs.GetString ("LastKnownLevel"));
 			}
 		}
-
-		if(GUI.Button(new Rect(580,540,120,50), "Game Credits")) {
+		else {
+			GUI.Button (new Rect(Screen.width/2-200, Screen.height/2 + 100, 120, 50), "Continue Game");
+		}
+		
+		if(GUI.Button(new Rect(Screen.width/2 + 100,Screen.height/2 + 100,120,50), "Game Credits")) {
 			//Application.LoadLevel("GameCredits");
 		}
 		
-		if(GUI.Button(new Rect(740,540,120,50), "Quit Game")) {
+		if(GUI.Button(new Rect(Screen.width/2 + 250,Screen.height/2 + 100,120,50), "Quit Game")) {
 			Application.Quit();
 		}
 		
 	}
-
+	
 	void newGameSetUP()
 	{
 		//Clean all the PlayerPrefs
@@ -71,3 +74,4 @@ public class MainMenu : MonoBehaviour {
 		PlayerPrefs.SetString("LastKnownLevel", "villageScene");
 	}
 }
+

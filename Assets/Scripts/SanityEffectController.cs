@@ -28,7 +28,6 @@ public class SanityEffectController : MonoBehaviour {
 		style = new GUIStyle();
 		texture = new Texture2D(128, 128);
 		player = GameObject.FindGameObjectWithTag ("Player").transform;
-		sbc.currSanity = 35f;
 	}
 	
 	// Update is called once per frame

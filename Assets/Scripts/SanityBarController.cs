@@ -9,7 +9,7 @@ public class SanityBarController : MonoBehaviour {
 	private GUIStyle style;
 	private Texture2D texture;
 	private FadeController fc;
-	private bool ritingOnWall = false;
+	private bool writingOnWall = false;
 	private bool changeToWriting = false;
 	
 	// Use this for initialization
