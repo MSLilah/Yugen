@@ -199,14 +199,14 @@ public class ItemMenu : MonoBehaviour {
 						attemptMessage = "Game Saved!";
 						PlayerPrefs.SetString("LastKnownLevel", currentLevel);
 				}
-				if(canNotSeeClues)
+				if(!canNotSeeClues)
 				{
 					if (GUI.Button (new Rect (10, 190, 120, 50), "Main Menu")) {
 						Application.LoadLevel("Main Menu");
 					}
 				}
 				
-				if (GUI.Button (new Rect (10, 190, 120, 50), "Quit Game")) {
+				if (GUI.Button (new Rect (10, 250, 120, 50), "Quit Game")) {
 						Application.Quit();
 				}
 				if(!canNotSeeClues)

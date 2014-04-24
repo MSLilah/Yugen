@@ -2,6 +2,11 @@ using UnityEngine;
 using System.Collections;
 
 public class MainMenu : MonoBehaviour {
+
+	public float playerInitXPos = 554.9058f;
+	public float playerInitYPos = 10f;
+	public float playerInitZPos = 339.2068f;
+	public float playerInitYRotation = -86.88f;
 	
 	// Use this for initialization
 	void Start () {
@@ -26,7 +31,19 @@ public class MainMenu : MonoBehaviour {
 		if (PlayerPrefs.GetInt ("GameExist", 0) == 1) 
 		{
 			if (GUI.Button (new Rect(Screen.width/2-200, Screen.height/2 + 100, 120, 50), "Continue Game")) {
-				Application.LoadLevel (PlayerPrefs.GetString ("LastKnownLevel"));
+				if((PlayerPrefs.GetString("LastKnownLevel")).Equals("villageScene"))
+				{
+					PlayerInitialPlacementController.lastKnownPlayerPosition = new Vector3(playerInitXPos, playerInitYPos, playerInitZPos);
+					PlayerInitialPlacementController.lastKnownPlayerRotation = new Quaternion(0.0f, playerInitYRotation, 0.0f, 0.0f);
+					PlayerInitialPlacementController.movePlayer = true;
+					PlayerPrefs.SetInt("GameStarted", 1);
+					MouseLook.noPrompt = true;
+					Application.LoadLevel("villageScene");
+				}
+				else
+				{
+					Application.LoadLevel (PlayerPrefs.GetString ("LastKnownLevel"));
+				}
 			}
 		}
 		else {
