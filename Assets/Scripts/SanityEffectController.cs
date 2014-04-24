@@ -48,7 +48,7 @@ public class SanityEffectController : MonoBehaviour {
 			WritingOnTheWall(normalWall);
 		}
 
-		if (sbc.currSanity < 20f && !falseEnemySpawned) {
+		if (sbc.currSanity < 20f && !falseEnemySpawned && !Application.loadedLevelName.Equals("villageScene")) {
 			SpawnFalseEnemy();
 		}
 
