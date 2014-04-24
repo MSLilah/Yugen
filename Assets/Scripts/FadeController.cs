@@ -7,12 +7,14 @@ public class FadeController : MonoBehaviour {
 	public bool gameOver = false;
 	private DeathController dc;
 	private StaminaBarController sbc;
+	private GameCompletionController gcc;
 
 	void Awake () {
 		guiTexture.pixelInset = new Rect(-1f, -1f, Screen.width, Screen.height);
 		guiTexture.enabled = false;
 		guiTexture.color = Color.clear;
 		dc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<DeathController> ();
+		gcc = GameObject.FindGameObjectWithTag ("GameController").GetComponent<GameCompletionController> ();
 		sbc = GameObject.FindGameObjectWithTag ("Player").GetComponent<StaminaBarController>();
 	}
 
@@ -35,9 +37,13 @@ public class FadeController : MonoBehaviour {
 		FadeToBlack();
 		
 		// If the screen is almost black...
-		if (guiTexture.color.a >= 0.95f) {
+		if (guiTexture.color.a >= 0.95f && !gcc.gameComplete) {
 			//...Display the restart text and enable restarting
 			dc.canRestart = true;
 		}
+		else if (guiTexture.color.a >= 0.95f && gcc.gameComplete) {
+			//TODO: SWITCH TO END SCREEN
+		}
+
 	}
 }
