@@ -8,6 +8,7 @@ public class FadeController : MonoBehaviour {
 	private DeathController dc;
 	private StaminaBarController sbc;
 	private GameCompletionController gcc;
+	private static bool nuxMode = false;
 
 	void Awake () {
 		guiTexture.pixelInset = new Rect(-1f, -1f, Screen.width, Screen.height);
@@ -19,9 +20,12 @@ public class FadeController : MonoBehaviour {
 	}
 
 	void Update () {
-		if (gameOver) {
+		if (gameOver && !(nuxMode && !gcc.gameComplete)) {
 			EndScene();
 			sbc.gameOver = true;
+		}
+		if (Input.GetKeyDown (KeyCode.N)) {
+			nuxMode = !nuxMode;
 		}
 	}
 
