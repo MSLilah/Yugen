@@ -41,11 +41,11 @@ public class BoundaryController : MonoBehaviour {
 
 			if(this.gameObject.tag.Equals("River"))
 			{
-				GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150), riverBoundaryImage);
+				//GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150), riverBoundaryImage);
 			}
 			else
 			{
-				GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150), boundaryImage);
+				//GUI.Label (new Rect (Screen.width-Screen.width/3, 10,300,150), boundaryImage);
 			}
 		}
 	}
