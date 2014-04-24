@@ -490,6 +490,7 @@ public class ItemMenu : MonoBehaviour {
 								clearSelectedItems();
 								attemptMessage = "These things make more sense together!";
 								newClueFound = true;
+								MouseLook.noPrompt = !(MouseLook.noPrompt);
 								menuOpen = false;
 							}
 							else
