@@ -42,7 +42,7 @@ public class FadeController : MonoBehaviour {
 			dc.canRestart = true;
 		}
 		else if (guiTexture.color.a >= 0.95f && gcc.gameComplete) {
-			//TODO: SWITCH TO END SCREEN
+			Application.LoadLevel ("endGame");
 		}
 
 	}
