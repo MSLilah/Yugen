@@ -23,8 +23,10 @@ public class ItemController : MonoBehaviour {
 		im = GameObject.FindGameObjectWithTag("ItemMenu").GetComponent<ItemMenu> ();
 		canPickUp = false;
 		itemachieved = false;
-		enemies = GameObject.FindGameObjectsWithTag ("Enemy");
-		EnableEnemies (false);
+		if (GameObject.FindGameObjectsWithTag("Clue").Length > 0) {
+			enemies = GameObject.FindGameObjectsWithTag ("Enemy");
+			EnableEnemies (false);
+		}
 	}
 	// Update is called once per frame
 	void OnTriggerStay(Collider other) {
@@ -44,9 +46,9 @@ public class ItemController : MonoBehaviour {
 			itemachieved = true;
 			im.pickedUpClue = clueIdentity;
 			im.newClueFound = true;
-			EnableEnemies(true);
 			sbc.maxSanity -= 7;
 			Destroy(this.gameObject);
+			EnableEnemies(true);
 		}
 	}
 	void OnGUI()
