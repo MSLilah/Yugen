@@ -34,7 +34,7 @@ public class MainMenu : MonoBehaviour {
 		}
 		
 		if(GUI.Button(new Rect(Screen.width/2 + 100,Screen.height/2 + 100,120,50), "Game Credits")) {
-			//Application.LoadLevel("GameCredits");
+			Application.LoadLevel("GameCredits");
 		}
 		
 		if(GUI.Button(new Rect(Screen.width/2 + 250,Screen.height/2 + 100,120,50), "Quit Game")) {
