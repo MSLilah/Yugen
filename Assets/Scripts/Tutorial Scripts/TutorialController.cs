@@ -51,6 +51,7 @@ public class TutorialController : MonoBehaviour {
 			DestroyObject (GameObject.FindWithTag ("TutorialEndBoundary"));
 			DestroyObject (GameObject.FindWithTag ("TutorialMenu"));
 			DestroyObject (GameObject.FindWithTag ("TutorialShrine"));
+			DestroyObject (GameObject.FindWithTag ("TutorialGrave"));
 			DestroyObject (GameObject.FindWithTag ("Tutorial"));
 		}
 		else 

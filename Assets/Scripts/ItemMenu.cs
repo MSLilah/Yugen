@@ -855,6 +855,7 @@ public class ItemMenu : MonoBehaviour {
 				FinalSacrificKnown = true;
 				PlayerPrefs.SetInt("FinalSacrificKnown",1);
 				gcc.gameComplete = true;
+				MouseLook.noPrompt = true;
 				return;
 			}
 			word = "New CLUE FOUND: " + word;
