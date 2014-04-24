@@ -27,6 +27,10 @@ public class SanityBarController : MonoBehaviour {
 		if (currSanity > maxSanity) {
 			currSanity = maxSanity;
 		}
+		if (currSanity == 0.0f) 
+		{
+
+		}
 		sanityBarLength = (Screen.width / 2) * (currSanity / 100f);
 	}
 	

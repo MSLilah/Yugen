@@ -865,6 +865,49 @@ public class ItemMenu : MonoBehaviour {
 		}
 
 	}
+
+	public void restartClues()
+	{
+		PlayerPrefs.SetInt("bloodNoteFound",0);
+		PlayerPrefs.SetInt("policeNoteFound",0);
+		PlayerPrefs.SetInt ("villageEmptyFound",0);
+		PlayerPrefs.SetInt("knifeBloodFound",0);
+		PlayerPrefs.GetInt("priestRobesFound",0);
+		PlayerPrefs.SetInt("photographPriestFound",0);
+		PlayerPrefs.SetInt("journalDarknessFound",0);
+		PlayerPrefs.SetInt("journalPeopleFound",0);
+		PlayerPrefs.SetInt("journalFinalPieceFound",0);
+		PlayerPrefs.SetInt("letterFound",1);
+		PlayerPrefs.SetInt("villageDisappearedKnown",0);
+		PlayerPrefs.SetInt("murderedVillagersKnown",0);
+		PlayerPrefs.SetInt("knifeIsPriestKnown",0);
+		PlayerPrefs.SetInt("priestIsMurdererKnown",0);
+		PlayerPrefs.SetInt("priestIsShadyKnown",0);
+		PlayerPrefs.SetInt("townSacrificKnown",0);
+		PlayerPrefs.SetInt("oneMoreRequiredKnown",0);
+		PlayerPrefs.SetInt("priestTrappingPersonKnown",0);
+		PlayerPrefs.SetInt("FinalSacificKnown",0);
+
+		bloodNoteFound = false;
+		policeNoteFound = false;
+		villageEmptyFound= false;
+		knifeBloodFound = false;
+		priestRobesFound= false;
+		photographPriestFound= false;
+		journalDarknessFound= false;
+		journalPeopleFound= false;
+		journalFinalPieceFound = false;
+		letterFound= true;
+		villageDisappearedKnown = false;
+		murderedVillagersKnown = false;
+		knifeIsPriestKnown= false;
+		priestIsMurdererKnown= false;
+		priestIsShadyKnown= false;
+		townSacrificKnown= false;
+		oneMoreRequiredKnown= false;
+		priestTrappingPersonKnown= false;
+		FinalSacrificKnown= false;
+	}
 	
 }
 

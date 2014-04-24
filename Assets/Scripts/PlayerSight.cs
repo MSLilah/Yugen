@@ -5,15 +5,18 @@ public class PlayerSight : MonoBehaviour {
 	public float fieldOfViewAngle = 180f;
 	public bool enemyInSight = false;
 	public SanityBarController sbc;
-	
+	public ItemMenu im;
+
 	private SphereCollider col;
 	private FadeController fc;
+
 	
 	void Start() 
 	{
 		col = GetComponent<SphereCollider> ();
 		sbc = GameObject.FindGameObjectWithTag("GameController").GetComponent<SanityBarController> ();
 		fc = GameObject.FindGameObjectWithTag ("Fader").GetComponent<FadeController> ();
+		im = GameObject.FindGameObjectWithTag ("ItemMenu").GetComponent<ItemMenu> ();
 	}
 	
 	void OnTriggerStay (Collider other)
@@ -53,6 +56,7 @@ public class PlayerSight : MonoBehaviour {
 			sbc.currSanity -= 0.1f;
 			if (sbc.currSanity < 0) {
 				sbc.currSanity = 0;
+				im.restartClues();
 				fc.gameOver = true;
 			}
 		}
