@@ -48,12 +48,8 @@ public class SanityEffectController : MonoBehaviour {
 			WritingOnTheWall(normalWall);
 		}
 
-		if (sbc.currSanity < 20f && !falseEnemySpawned) {
+		if (sbc.currSanity < 20f && !falseEnemySpawned && !Application.loadedLevelName.Equals("villageScene")) {
 			SpawnFalseEnemy();
-		}
-
-		if (sbc.currSanity < 40f && !Camera.main.audio.isPlaying) {
-			PlayScaryNoise();
 		}
 	}
 
@@ -78,13 +74,6 @@ public class SanityEffectController : MonoBehaviour {
 	void SetLightColor(Color c) {
 		for (int i = 0; i < lights.Length; i++) {
 			lights[i].light.color = c;
-		}
-	}
-
-	void PlayScaryNoise() {
-		int random = Random.Range (0, 10000);
-		if (random < 5) {
-			Camera.main.audio.Play ();
 		}
 	}
 }
