@@ -44,10 +44,9 @@ public class ItemController : MonoBehaviour {
 			itemachieved = true;
 			im.pickedUpClue = clueIdentity;
 			im.newClueFound = true;
-			Destroy(this.gameObject);
 			EnableEnemies(true);
 			sbc.maxSanity -= 7;
-			//Destroy(this.gameObject);
+			Destroy(this.gameObject);
 		}
 	}
 	void OnGUI()
