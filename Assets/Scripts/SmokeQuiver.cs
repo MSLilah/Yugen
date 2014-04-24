@@ -22,7 +22,7 @@ public class SmokeQuiver : MonoBehaviour {
 		float x = GameObject.FindGameObjectWithTag ("Smoke").GetComponent<ParticleEmitter> ().worldVelocity.x;
 		Debug.Log ("current velocity");
 		Debug.Log (x);
-		if (x < randomScale-.4) 
+		if (x < randomScale-.6) 
 		{
 			toAdd = -toAdd;
 		}
