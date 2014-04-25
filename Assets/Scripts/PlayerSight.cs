@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlayerSight : MonoBehaviour {
-	public float fieldOfViewAngle = 180f;
+	public float fieldOfViewAngle = 150f;
 	public bool enemyInSight = false;
 	public SanityBarController sbc;
 	public ItemMenu im;
@@ -53,7 +53,7 @@ public class PlayerSight : MonoBehaviour {
 	
 	void Update() {
 		if (enemyInSight) {
-			sbc.currSanity -= 0.1f;
+			sbc.currSanity -= 0.05f;
 			if (sbc.currSanity < 0) {
 				sbc.currSanity = 0;
 				im.restartClues();
