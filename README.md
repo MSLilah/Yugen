@@ -1,4 +1,4 @@
 Yugen
 =====
 
-Yugen, an exploration-based first-person horror game.
+**Yugen**, an exploration-based first-person horror game.
